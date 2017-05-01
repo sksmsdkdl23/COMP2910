@@ -15,12 +15,15 @@
                 setTimeout(function() {
                     $('li').fadeIn(1000);
                 }, 1000);
+                setTimeout(function() {
+                    $('#panel1').fadeIn(1000);
+                }, 2000);
             });
         </script>
         <div id="banner">
             <h1>WELCOME TO PRESERVE.IT</h1>
         </div>
-        <div>
+        <div id="navigation" class="row">
             <nav>
                 <ul>
                     <a href="https://www.naver.com"><li>Naver</li></a>
@@ -29,6 +32,17 @@
                     <a href="https://github.com/"><li>Github</li></a>
                 </ul>
             </nav>
+        </div>
+        <div id="panel1" class="row">
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
+            <div class="col-xl-5 col-lg-5 col-md-5" id="test1">
+                
+            </div>
+
+            <div class="col-xl-5 col-lg-5 col-md-5" id="test2">
+                
+            </div>
+            <div class="col-xl-1 col-lg-1 col-md-1"></div>
         </div>
     </body>
 </html>

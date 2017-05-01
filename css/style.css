@@ -28,3 +28,18 @@ li {
 li:hover {
     background: lightblue;
 }
+
+#panel1{
+    margin: 25px 0px;
+    display: none;
+}
+
+#test1 {
+    background: red;
+    height: 100px;
+}
+
+#test2 {
+    background: blue;
+    height: 100px;
+}
