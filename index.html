@@ -6,8 +6,17 @@
         <title>Preserve.it</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <script src="js/jquery-3.2.1.min.js"></script>
     </head>
     <body>
+        <script>
+            $(document).ready(function() {
+                $("#banner").fadeIn(1000);
+                setTimeout(function() {
+                    $('li').fadeIn(1000);
+                }, 1000);
+            });
+        </script>
         <div id="banner">
             <h1>WELCOME TO PRESERVE.IT</h1>
         </div>
