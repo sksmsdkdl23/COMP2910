@@ -18,6 +18,12 @@
                 setTimeout(function() {
                     $('#panel1').fadeIn(1000);
                 }, 2000);
+                setTimeout(function() {
+                    $('footer').fadeIn(1000);
+                }, 2000);
+                $("#apples").click(function() {
+                    $("#apple").fadeIn(1000);
+                });
             });
         </script>
         <div id="banner">
@@ -26,23 +32,42 @@
         <div id="navigation" class="row">
             <nav>
                 <ul>
-                    <a href="https://www.naver.com"><li>Naver</li></a>
-                    <a href="https://www.google.ca"><li>Google</li></a>
-                    <a href="https://www.facebook.com"><li>Facebook</li></a>
-                    <a href="https://github.com/"><li>Github</li></a>
+                    <a href="https://www.naver.com"><li class="navigate">Naver</li></a>
+                    <a href="https://www.google.ca"><li class="navigate">Google</li></a>
+                    <a href="https://www.facebook.com"><li class="navigate">Facebook</li></a>
+                    <a href="https://github.com/"><li class="navigate">Github</li></a>
                 </ul>
             </nav>
         </div>
         <div id="panel1" class="row">
-            <div class="col-xl-1 col-lg-1 col-md-1"></div>
-            <div class="col-xl-5 col-lg-5 col-md-5" id="test1">
-                
+            <div class="col-xl-9 col-lg-9 col-md-9" id="test1">
+                <div id="apple">
+                    <h2>Apple</h2>
+                    <!--<div style="text-align: left;">
+                        <h3>How to preserve an apple</h3>
+                    </div>-->
+                    <h3>How to preserve an apple</h3>
+                    
+                    <p>Apple paragraph goes here.</p>
+                </div>
             </div>
 
-            <div class="col-xl-5 col-lg-5 col-md-5" id="test2">
-                
+            <div class="col-xl-3 col-lg-3 col-md-3" id="test2">
+                <div id="item-list">
+                    <h2>List of item</h2>
+                    <p>Can have categories and drop down of items.</p>
+                    <ul>
+                        <li id="apples">Apple</li>
+                        <li>Banana</li>
+                        <li>Carrot</li>
+                        <li>Dairy</li>
+                        <li>Egg plant</li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-xl-1 col-lg-1 col-md-1"></div>
         </div>
+        <footer>
+            <p id="name">Victor, Philip, Raymond, Tian, Ryan</p>
+        </footer>
     </body>
 </html>
