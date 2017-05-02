@@ -6,6 +6,11 @@
     display: none;
 }
 
+footer {
+    display: none;
+    height: 50px;
+}
+
 a {
     color: black;
 }
@@ -16,7 +21,7 @@ ul {
     padding: 0;
 }
 
-li {
+.navigate {
     width: 25%;
     list-style: none;
     float: left;
@@ -30,16 +35,28 @@ li:hover {
 }
 
 #panel1{
-    margin: 25px 0px;
+    margin-top: 25px;
     display: none;
 }
 
 #test1 {
-    background: red;
-    height: 100px;
+    background: lightpink;
+    height: 500px;
 }
 
 #test2 {
-    background: blue;
-    height: 100px;
+    background: lightskyblue;
+    height: 500px;
+}
+
+#apple {
+    text-align: center;
+}
+
+#item-list {
+    text-align: center;
+}
+
+#apple {
+    display: none;
 }
