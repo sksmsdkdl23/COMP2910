@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -9,65 +8,42 @@
         <script src="js/jquery-3.2.1.min.js"></script>
     </head>
     <body>
-        <script>
-            $(document).ready(function() {
-                $("#banner").fadeIn(1000);
-                setTimeout(function() {
-                    $('li').fadeIn(1000);
-                }, 1000);
-                setTimeout(function() {
-                    $('#panel1').fadeIn(1000);
-                }, 2000);
-                setTimeout(function() {
-                    $('footer').fadeIn(1000);
-                }, 2000);
-                $("#apples").click(function() {
-                    $("#apple").fadeIn(1000);
-                });
-            });
-        </script>
-        <div id="banner">
-            <h1>WELCOME TO PRESERVE.IT</h1>
+      <div id="background">
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="apple.html">Apple</a>
+          <a href="#">Services</a>
+          <a href="#">Clients</a>
+          <a href="#">Contact</a>
         </div>
-        <div id="navigation" class="row">
-            <nav>
-                <ul>
-                    <a href="https://www.naver.com"><li class="navigate">Naver</li></a>
-                    <a href="https://www.google.ca"><li class="navigate">Google</li></a>
-                    <a href="https://www.facebook.com"><li class="navigate">Facebook</li></a>
-                    <a href="https://github.com/"><li class="navigate">Github</li></a>
-                </ul>
-            </nav>
+        <span id="open" onclick="openNav()">&#9776;</span>
+        <div id="title" class="row">
+          <h1>Preservit</h1>
         </div>
-        <div id="panel1" class="row">
-            <div class="col-xl-9 col-lg-9 col-md-9" id="test1">
-                <div id="apple">
-                    <h2>Apple</h2>
-                    <!--<div style="text-align: left;">
-                        <h3>How to preserve an apple</h3>
-                    </div>-->
-                    <h3>How to preserve an apple</h3>
-                    
-                    <p>Apple paragraph goes here.</p>
-                </div>
-            </div>
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+              <div id="imaginary_container">
+                  <div class="input-group stylish-input-group">
+                      <input type="text" class="form-control"  placeholder="Search" >
+                      <span class="input-group-addon">
+                          <button type="submit">
+                              <image src="image/search2.png" width="15" height="15" alt="submit">
+                          </button>
+                      </span>
+                  </div>
+              </div>
+          </div>
+      	</div>
 
-            <div class="col-xl-3 col-lg-3 col-md-3" id="test2">
-                <div id="item-list">
-                    <h2>List of item</h2>
-                    <p>Can have categories and drop down of items.</p>
-                    <ul>
-                        <li id="apples">Apple</li>
-                        <li>Banana</li>
-                        <li>Carrot</li>
-                        <li>Dairy</li>
-                        <li>Egg plant</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <footer>
-            <p id="name">Victor, Philip, Raymond, Tian, Ryan</p>
-        </footer>
+        <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+      </div>
     </body>
 </html>
