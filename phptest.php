@@ -13,7 +13,7 @@ mysql_select_db('sadapaac_preservit')
     or die('Could not select a database.');
  
 // Example query: (TOP 10 equal LIMIT 0,10 in MySQL)
-$SQL = "SELECT * FROM foodItem ORDER BY itemId ASC";
+$SQL = "SELECT * FROM foodItem WHERE itemName = 'banana';";
  
 // Execute query:
 $result = mysql_query($SQL) 
@@ -27,7 +27,10 @@ print "Showing $count rows:<hr/>\n\n";
 while ($Row = mysql_fetch_assoc($result)) {
  
     $itemName = $Row['itemName'] . "\n";
-	$howToPreserve= $Row['howToPreserve'];
+	$howToPreserve = $Row['howToPreserve'];
+	$howToSave = $Row['howToSave'];
+	$goingBad = $Row["howToTellIfGoingBad"];
+	$recipes = $Row["recipes"];
  
 }
  
@@ -36,7 +39,7 @@ include 'header.html';
 
 echo 
 "<ul>
-<li>$itemName -- $howToPreserve</li>
+<li>$itemName -- $howToPreserve -- $howToSave -- $goingBad --  $Recipes</li>
 </ul>";
 
 mysql_close($con);

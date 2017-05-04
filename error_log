@@ -27,3 +27,10 @@
 [04-May-2017 14:01:17 America/Denver] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home2/sadapaac/public_html/preservit/phptest.php on line 30
 [04-May-2017 14:01:19 America/Denver] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home2/sadapaac/public_html/preservit/phptest.php on line 30
 [04-May-2017 14:02:08 America/Denver] PHP Notice:  Undefined variable: count in /home2/sadapaac/public_html/preservit/phptest.php on line 24
+[04-May-2017 14:09:52 America/Denver] PHP Notice:  Undefined variable: count in /home2/sadapaac/public_html/preservit/phptest.php on line 24
+[04-May-2017 14:12:16 America/Denver] PHP Notice:  Undefined variable: count in /home2/sadapaac/public_html/preservit/phptest.php on line 24
+[04-May-2017 14:12:20 America/Denver] PHP Notice:  Undefined variable: count in /home2/sadapaac/public_html/preservit/phptest.php on line 24
+[04-May-2017 14:15:07 America/Denver] PHP Notice:  Undefined variable: count in /home2/sadapaac/public_html/preservit/phptest.php on line 24
+[04-May-2017 14:15:30 America/Denver] PHP Notice:  Undefined variable: count in /home2/sadapaac/public_html/preservit/phptest.php on line 24
+[04-May-2017 14:18:09 America/Denver] PHP Notice:  Undefined variable: count in /home2/sadapaac/public_html/preservit/phptest.php on line 24
+[04-May-2017 14:18:09 America/Denver] PHP Notice:  Undefined variable: Recipes in /home2/sadapaac/public_html/preservit/phptest.php on line 43
