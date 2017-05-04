@@ -26,17 +26,19 @@ print "Showing $count rows:<hr/>\n\n";
 // Fetch rows:
 while ($Row = mysql_fetch_assoc($result)) {
  
-    print $Row['itemName'] . "\n";
+    $itemName = $Row['itemName'] . "\n";
+	$howToPreserve= $Row['howToPreserve'];
  
 }
  
-mysql_close($con);
+
 include 'header.html';
 
 echo 
 "<ul>
-<li>item</li>
+<li>$itemName -- $howToPreserve</li>
 </ul>";
 
+mysql_close($con);
 include 'footer.html';
 ?>
