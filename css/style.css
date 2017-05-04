@@ -1,45 +1,91 @@
-#banner {
-    height: 10%;
+#background {
     text-align: center;
-    color: lightgreen;
-    font-family: Arial, Helvetica, sans-serif;
-    display: none;
+    font-family: "Times New Roman", Georgia, Serif;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-size: cover;
+    background-color: rgba(153, 255, 153, 0.6);
 }
 
-a {
-    color: black;
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: lightgreen;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
 
-li {
-    width: 25%;
-    list-style: none;
-    float: left;
-    text-align: center;
-    margin-top: 20px;
-    display: none;
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
 }
 
-li:hover {
-    background: lightblue;
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
-#panel1{
-    margin: 25px 0px;
-    display: none;
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 
-#test1 {
-    background: red;
-    height: 100px;
+#open {
+  float: left;
+  font-size:30px;
+  cursor: pointer;
+  margin-left: 30px;
+  margin-top: 20px;
 }
 
-#test2 {
-    background: blue;
-    height: 100px;
+#title h1{
+  font-size: 50px;
+  margin-top: 15%;
+}
+#imaginary_container{
+    margin-top:4%;
+}
+
+.stylish-input-group .input-group-addon{
+    background: white !important;
+}
+
+.stylish-input-group .form-control{
+	border-right:0;
+	box-shadow:0 0 0;
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+.info h3, p{
+  float: left;
+  margin-left: 10%;
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+p {
+  font-size: 15px;
 }
