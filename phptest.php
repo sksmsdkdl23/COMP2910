@@ -29,8 +29,8 @@ while ($Row = mysql_fetch_assoc($result)) {
     $itemName = $Row['itemName'] . "\n";
 	$howToPreserve = $Row['howToPreserve'];
 	$howToSave = $Row['howToSave'];
-	$goingBad = $Row["howToTellIfGoingBad"];
-	$recipes = $Row["recipes"];
+	$goingBad = $Row['howToTellIfGoingBad'];
+	$recipes = $Row['recipes'];
  
 }
  

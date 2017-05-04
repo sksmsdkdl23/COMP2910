@@ -35,3 +35,5 @@
 [04-May-2017 14:18:09 America/Denver] PHP Notice:  Undefined variable: count in /home2/sadapaac/public_html/preservit/phptest.php on line 24
 [04-May-2017 14:18:09 America/Denver] PHP Notice:  Undefined variable: Recipes in /home2/sadapaac/public_html/preservit/phptest.php on line 43
 [04-May-2017 14:20:50 America/Denver] PHP Notice:  Undefined variable: count in /home2/sadapaac/public_html/preservit/phptest.php on line 24
+[04-May-2017 14:22:05 America/Denver] PHP Notice:  Undefined variable: count in /home2/sadapaac/public_html/preservit/phptest.php on line 24
+[04-May-2017 14:23:14 America/Denver] PHP Notice:  Undefined variable: count in /home2/sadapaac/public_html/preservit/phptest.php on line 24
