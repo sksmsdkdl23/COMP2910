@@ -39,7 +39,7 @@ include 'header.html';
 
 echo 
 "<ul>
-<li>$itemName -- $howToPreserve -- $howToSave -- $goingBad --  $Recipes</li>
+<li>$itemName -- $howToPreserve -- $howToSave -- $goingBad --  $recipes</li>
 </ul>";
 
 mysql_close($con);
