@@ -13,6 +13,7 @@ mysql_select_db('sadapaac_preservit')
     or die('Could not select a database.');
  
 // Example query: (TOP 10 equal LIMIT 0,10 in MySQL)
+// Query we need: (SELECT * FROM foodItem WHERE itemName LIKE ('%$userinput%');
 $SQL = "SELECT * FROM foodItem WHERE itemName = 'banana';";
  
 // Execute query:
@@ -36,7 +37,7 @@ while ($Row = mysql_fetch_assoc($result)) {
  
 
 include 'header.html';
-
+include 'searchform.html'; // this doesn't exist yet
 echo 
 "<ul>
 <li>$itemName -- $howToPreserve -- $howToSave -- $goingBad --  $recipes</li>
