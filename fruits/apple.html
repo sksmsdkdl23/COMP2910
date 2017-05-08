@@ -1,0 +1,81 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Preserve.it</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
+        <script src="js/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+      <div id="background">
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Clients</a>
+          <a href="#">Contact</a>
+        </div>
+        <span id="open" onclick="openNav()">&#9776;</span>
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+              <div id="imaginary_container">
+                  <div class="input-group stylish-input-group">
+                      <input type="text" class="form-control"  placeholder="Search" >
+                      <span class="input-group-addon">
+                          <button type="submit">
+                              <image src="../image/search2.png" width="15" height="15" alt="submit">
+                          </button>
+                      </span>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+        <div class="info">
+          <div id="apple">
+            <h1>Apple</h1>
+            <div class="row">
+              <h3>How to preserve:</h3>
+            </div>
+            <div class="paragraph">
+              <p>
+                Slice apples into 1/2 inch thick rings. To prevent browning, drop apple rings
+                into a bowl of cold water (about 2 quarts) containing 1/2 teaspoon ascorbic acid
+                powder (1500 mg), or use equivalent in finely crushed vitamin C tablets or 1/2
+                cup lemon juice. Keep apples covered with ascorbic acid water until ready to use.
+              </p>
+            </div>
+            <div class="row">
+              <h3>How to tell if an apple has gone bad:</h3>
+            </div>
+            <div class="paragraph">
+              <p>
+                If an apple is too soft inside or if the skin of the apple is wrinkled and loose,
+                throw it out. Check the apple for discolored spots. Some spots can be due to bruising,
+                in which case the apple is still OK to eat. When you find a discolored spot, slice off
+                the skin in that spot.
+              </p>
+            </div>
+            <div class="row">
+              <h3>How to save it:</h3>
+            </div>
+            <div class="paragraph">
+              <p>
+                If the apple is bruised, the apple is still okay. An apple that has started going bad can
+                unfortunately not be saved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+</html>
