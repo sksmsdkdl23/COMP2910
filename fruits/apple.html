@@ -5,16 +5,44 @@
         <title>Preserve.it</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
-        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="../js/jquery-3.2.1.min.js"></script>
     </head>
     <body>
       <div id="background">
         <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Clients</a>
-          <a href="#">Contact</a>
+          <a href="../index.html">Home</a>
+          <a href="#" id="fruit">Fruit</a>
+          <div id="items1" class="items">
+            <ul>
+              <li><a href="apple.html">Apple</a></li>
+              <li><a href="banana.html">Banana</a></li>
+              <li><a href="melon.html">Melon</a></li>
+              <li><a href="peach.html">Peach</a></li>
+              <li><a href="strawberry.html">Strawberry</a></li>
+              <li><a href="raspberry.html">Raspberry</a></li>
+              <li><a href="blueberry.html">Blueberry</a></li>
+              <li><a href="plum.html">Plum</a></li>
+              <li><a href="pineapple.html">Pineapple</a></li>
+              <li><a href="tomato.html">Tomato</a></li>
+            </ul>
+          </div>
+          <a href="#" id="meat">Meat</a>
+          <div id="items2" class="items">
+            <ul>
+              <li><a href="../meats/beef.html">Beef: Steaks</a></li>
+              <li><a href="../meats/blueberry.html">Beef: Ground</a></li>
+              <li><a href="../meats/poultry.html">Poultry</a></li>
+              <li><a href="../meats/fish.html">Fish</a></li>
+              <li><a href="../meats/pork.html">Pork</a></li>
+              <li><a href="../meats/egg.html">Egg</a></li>
+              <li><a href="../meats/sausage.html">Sausage</a></li>
+              <li><a href="../meats/hotdog.html">Hot Dogs</a></li>
+              <li><a href="../meats/shrimp.html">Shrimp</a></li>
+              <li><a href="../meats/bacon.html">Bacon</a></li>
+              <li><a href="../meats/oyster.html">Oyster</a></li>
+            </ul>
+          </div>
         </div>
         <span id="open" onclick="openNav()">&#9776;</span>
         <div class="row">
@@ -32,13 +60,38 @@
           </div>
         </div>
         <script>
-        function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
-        }
+          $('#fruit').click(function() {
+            if ($('#items1').is(":visible") == false) {
+              $('#items2').hide("slow");
+              $('#items1').show("slow");
+              document.getElementById("mySidenav").style.width = "150px";
+            } else if($('#items1').is(":visible") == true) {
+              $('#items1').hide("slow");
+              document.getElementById("mySidenav").style.width = "100px";
+            }
+          });
 
-        function closeNav() {
+          $('#meat').click(function() {
+            if ($('#items2').is(":visible") == false) {
+              $('#items1').hide("slow");
+              $('#items2').show("slow");
+              document.getElementById("mySidenav").style.width = "150px";
+            } else if($('#items2').is(":visible") == true) {
+              $('#items2').hide("slow");
+              document.getElementById("mySidenav").style.width = "100px";
+            }
+          });
+
+          function openNav() {
+            document.getElementById("mySidenav").style.width = "100px";
+          }
+
+          function closeNav() {
+            if ($('.items').is(":visible") == true) {
+              $('.items').hide("fast");
+            }
             document.getElementById("mySidenav").style.width = "0";
-        }
+          }
         </script>
         <div class="info">
           <div id="apple">
