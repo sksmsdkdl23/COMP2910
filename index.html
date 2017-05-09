@@ -6,10 +6,11 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>
       <div id="background">
-        <div id="mySidenav" class="sidenav">
+        <div id="mySidenav" class="sidenav visible-lg visible-md">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <a href="#" id="fruit">Fruit</a>
           <div class="items1">
@@ -17,13 +18,86 @@
               <li><a href="fruits/apple.html">Apple</a></li>
             </ul>
           </div>
-          <a href="#">Services</a>
-          <a href="#">Clients</a>
-          <a href="#">Contact</a>
+          <a href="#" id="vegetable">Vegetables</a>
+          <div class="items2">
+            <ul>
+              <li><a href="#">Item</a></li>
+            </ul>
+          </div>
+          <a href="#" id="dairy">Dairy</a>
+          <div class="items3">
+            <ul>
+              <li><a href="#">Item</a></li>
+            </ul>
+          </div>
+          <a href="#" id="meat">Meats</a>
+          <div class="items4">
+            <ul>
+              <li><a href="#">Item</a></li>
+            </ul>
+          </div>
+          <a href="#" id="grain">Grains</a>
+          <div class="items5">
+            <ul>
+              <li><a href="#">Item</a></li>
+            </ul>
+          </div>
         </div>
-        <span id="open" onclick="openNav()">&#9776;</span>
+        <span id="open" onclick="openNav()" class="visible-lg visible-md">&#9776;</span>
+        
+        <nav class="navbar topnav visible-sm visible-xs">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle topnavButton" data-toggle="collapse" data-target="#myNavbar">
+              &#9776;                 
+          </button>
+          <a class="navbar-brand" href="#">PreservIt</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Fruits <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="fruits/apple.html">Apple</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vegetables <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Dairy <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Meats <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Grains <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
         <div id="title" class="row">
-          <h1>Preservit</h1>
+          <h1 class="">PreservIt</h1>
         </div>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
@@ -48,6 +122,35 @@
             $('.items1').hide("slow");
           }
         });
+        $('#vegetable').click(function() {
+          if ($('.items2').is(":visible") == false) {
+            $('.items2').show("slow");
+          } else if($('.items2').is(":visible") == true) {
+            $('.items2').hide("slow");
+          }
+        });
+        $('#dairy').click(function() {
+          if ($('.items3').is(":visible") == false) {
+            $('.items3').show("slow");
+          } else if($('.items3').is(":visible") == true) {
+            $('.items3').hide("slow");
+          }
+        });
+        $('#meat').click(function() {
+          if ($('.items4').is(":visible") == false) {
+            $('.items4').show("slow");
+          } else if($('.items4').is(":visible") == true) {
+            $('.items4').hide("slow");
+          }
+        });
+        $('#grain').click(function() {
+          if ($('.items5').is(":visible") == false) {
+            $('.items5').show("slow");
+          } else if($('.items5').is(":visible") == true) {
+            $('.items5').hide("slow");
+          }
+        });
+        
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
         }
