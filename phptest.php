@@ -5,6 +5,8 @@
 */
 
 // Connect to the database (host, username, password)
+$squery = $_GET('squery');
+
 $con = mysql_connect('localhost:3306','sadapaac_student','fireflies131') 
     or die('Could not connect to the server!');
 
@@ -14,7 +16,7 @@ mysql_select_db('sadapaac_preservit')
  
 // Example query: (TOP 10 equal LIMIT 0,10 in MySQL)
 // Query we need: (SELECT * FROM foodItem WHERE itemName LIKE ('%$userinput%');
-$SQL = "SELECT * FROM foodItem WHERE itemName = 'banana';";
+$SQL = "SELECT * FROM foodItem WHERE itemName LIKE ('$squery%;');
  
 // Execute query:
 $result = mysql_query($SQL) 
