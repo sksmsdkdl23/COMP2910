@@ -78,9 +78,7 @@
                 <li class="active"><a href="index.html">Home</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Fruits <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="fruits/apple.html">Apple</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                    <?php echo "$htmlfruitlist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vegetables <span class="caret"></span></a>
@@ -145,6 +143,7 @@
               document.getElementById("mySidenav").style.width = "150px";
             } else if($('#items1').is(":visible") == true) {
               $('#items1').hide("slow");
+              document.getElementById("mySidenav").style.width = "100px";
             }
           });
 
@@ -158,17 +157,17 @@
               document.getElementById("mySidenav").style.width = "150px";
             } else if($('#items2').is(":visible") == true) {
               $('#items2').hide("slow");
+              document.getElementById("mySidenav").style.width = "100px";
             }
           });
 
           $('#vegetable').click(function() {
-            if ($('#items3').is(":visible") == false) {
+            if ($('.items3').is(":visible") == false) {
               $('#items2').hide("slow");
               $('#items1').hide("slow");
               $('#items4').hide("slow");
               $('#items5').hide("slow");
               $('#items3').show("slow");
-              document.getElementById("mySidenav").style.width = "150px";
             } else if($('#items3').is(":visible") == true) {
               $('#items3').hide("slow");
             }
@@ -181,27 +180,25 @@
               $('#items1').hide("slow");
               $('#items5').hide("slow");
               $('#items4').show("slow");
-              document.getElementById("mySidenav").style.width = "150px";
             } else if($('#items4').is(":visible") == true) {
               $('#items4').hide("slow");
             }
           });
           
           $('#grain').click(function() {
-            if ($('#items5').is(":visible") == false) {
+            if ($('.items5').is(":visible") == false) {
               $('#items2').hide("slow");
               $('#items3').hide("slow");
               $('#items4').hide("slow");
               $('#items1').hide("slow");
               $('#items5').show("slow");
-              document.getElementById("mySidenav").style.width = "150px";
             } else if($('#items5').is(":visible") == true) {
               $('#items5').hide("slow");
             }
           });
         
           function openNav() {
-            document.getElementById("mySidenav").style.width = "150px";
+              document.getElementById("mySidenav").style.width = "150px";
           }
           function closeNav() {
             if ($('.items').is(":visible") == true) {
