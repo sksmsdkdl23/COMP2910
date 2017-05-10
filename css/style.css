@@ -32,6 +32,15 @@
     transition: 0.3s;
 }
 
+.topnav {
+    background-color: lightgreen;
+
+}
+
+.topnavButton {
+  background-color: rgba(153, 255, 153, 0.6);
+}
+
 .sidenav div {
   display: none;
 }

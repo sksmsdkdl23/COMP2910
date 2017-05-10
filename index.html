@@ -6,10 +6,11 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>
       <div id="background">
-        <div id="mySidenav" class="sidenav">
+        <div id="mySidenav" class="sidenav visible-lg visible-md">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <a href="index.html">Home</a>
           <a href="#" id="fruit">Fruit</a>
@@ -43,10 +44,80 @@
               <li><a href="meats/oyster.html">Oyster</a></li>
             </ul>
           </div>
+          <a href="#" id="vegetable">Vegetables</a>
+          <div id="items3" class="items">
+            <ul>
+              <li><a href="#">Item</a></li>
+            </ul>
+          </div>
+          <a href="#" id="dairy">Dairy</a>
+          <div id="items4" class="items">
+            <ul>
+              <li><a href="#">Item</a></li>
+            </ul>
+          </div>
+          <a href="#" id="grain">Grains</a>
+          <div id="items5" class="items">
+            <ul>
+              <li><a href="#">Item</a></li>
+            </ul>
+          </div>
         </div>
-        <span id="open" onclick="openNav()">&#9776;</span>
+        <span id="open" onclick="openNav()" class="visible-lg visible-md">&#9776;</span>
+        
+        <nav class="navbar topnav visible-sm visible-xs">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle topnavButton" data-toggle="collapse" data-target="#myNavbar">
+                  &#9776;                 
+              </button>
+              <a class="navbar-brand" href="#">PreservIt</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Fruits <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="fruits/apple.html">Apple</a></li>
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Item</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vegetables <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Item</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Dairy <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Item</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Meats <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Item</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Grains <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Item</a></li>
+                    <li><a href="#">Item</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
         <div id="title" class="row">
-          <h1>Preservit</h1>
+          <h1 class="">PreservIt</h1>
         </div>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
@@ -67,29 +138,71 @@
           $('#fruit').click(function() {
             if ($('#items1').is(":visible") == false) {
               $('#items2').hide("slow");
+              $('#items3').hide("slow");
+              $('#items4').hide("slow");
+              $('#items5').hide("slow");
               $('#items1').show("slow");
-              document.getElementById("mySidenav").style.width = "180px";
+              document.getElementById("mySidenav").style.width = "150px";
             } else if($('#items1').is(":visible") == true) {
               $('#items1').hide("slow");
-              document.getElementById("mySidenav").style.width = "150px";
             }
           });
 
           $('#meat').click(function() {
             if ($('#items2').is(":visible") == false) {
               $('#items1').hide("slow");
+              $('#items3').hide("slow");
+              $('#items4').hide("slow");
+              $('#items5').hide("slow");
               $('#items2').show("slow");
-              document.getElementById("mySidenav").style.width = "180px";
+              document.getElementById("mySidenav").style.width = "150px";
             } else if($('#items2').is(":visible") == true) {
               $('#items2').hide("slow");
-              document.getElementById("mySidenav").style.width = "150px";
             }
           });
 
-          function openNav() {
-            document.getElementById("mySidenav").style.width = "180px";
-          }
+          $('#vegetable').click(function() {
+            if ($('#items3').is(":visible") == false) {
+              $('#items2').hide("slow");
+              $('#items1').hide("slow");
+              $('#items4').hide("slow");
+              $('#items5').hide("slow");
+              $('#items3').show("slow");
+              document.getElementById("mySidenav").style.width = "150px";
+            } else if($('#items3').is(":visible") == true) {
+              $('#items3').hide("slow");
+            }
+          });
 
+          $('#dairy').click(function() {
+            if ($('#items4').is(":visible") == false) {
+              $('#items2').hide("slow");
+              $('#items3').hide("slow");
+              $('#items1').hide("slow");
+              $('#items5').hide("slow");
+              $('#items4').show("slow");
+              document.getElementById("mySidenav").style.width = "150px";
+            } else if($('#items4').is(":visible") == true) {
+              $('#items4').hide("slow");
+            }
+          });
+          
+          $('#grain').click(function() {
+            if ($('#items5').is(":visible") == false) {
+              $('#items2').hide("slow");
+              $('#items3').hide("slow");
+              $('#items4').hide("slow");
+              $('#items1').hide("slow");
+              $('#items5').show("slow");
+              document.getElementById("mySidenav").style.width = "150px";
+            } else if($('#items5').is(":visible") == true) {
+              $('#items5').hide("slow");
+            }
+          });
+        
+          function openNav() {
+            document.getElementById("mySidenav").style.width = "150px";
+          }
           function closeNav() {
             if ($('.items').is(":visible") == true) {
               $('.items').hide("fast");
