@@ -129,3 +129,16 @@ p {
   width: 90%;
   text-align: left;
 }
+
+a{
+  color: #818181;
+  transition: 0.3s;
+}
+
+a:hover, a:focus {
+  color: #f1f1f1;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: transparent;
+} 
