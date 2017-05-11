@@ -72,7 +72,7 @@
               <button type="button" class="navbar-toggle topnavButton" data-toggle="collapse" data-target="#myNavbar">
                   &#9776;                 
               </button>
-              <a class="navbar-brand" href="#">PreservIt</a>
+              <a class="navbar-brand" href="index.html">PreservIt</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
@@ -136,6 +136,10 @@
       	</div>
 
         <script>
+          $('.nav li a').click(function() {
+            $('.nav li a').css("background-color", "transparent");
+          });
+
           $('#fruit').click(function() {
             if ($('#items1').is(":visible") == false) {
               $('#items2').hide("slow");
