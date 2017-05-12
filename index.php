@@ -1,30 +1,80 @@
+<?php 
+
+/*
+** Connect to database:
+*/
+
+// Connect to the database (host, username, password)
+if ($_GET == null)
+	$squery = "apple";
+	
+$squery = htmlspecialchars($_GET['squery']);
+
+$con = mysql_connect('localhost:3306','sadapaac_student','fireflies131') 
+    or die('Could not connect to the server!');
+
+// Select a database:
+mysql_select_db('sadapaac_preservit') 
+    or die('Could not select a database.');
+ 
+// Example query: (TOP 10 equal LIMIT 0,10 in MySQL)
+// Query we need: (SELECT * FROM foodItem WHERE itemName LIKE ('%$userinput%');
+$SQL = "SELECT * FROM foodItem WHERE itemName LIKE ('$squery%')";
+$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruit'";
+ 
+// Execute query:
+$result = mysql_query($SQL) 
+    or die('A error occured: ' . mysql_error());
+
+$resultFruit = mysql_query($SQLFruit)
+	or die ('A error occured: ' . mysql_error());
+	
+$fruitList;
+ 
+
+ 
+// Generate category items Fruit
+while ($Fruits = mysql_fetch_assoc($resultFruit)){
+	$fruitList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n");
+}
+// example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
+// example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>
+// donn't make it refer to html pages, gonna try to make it refer to an item.php page that generates the page 
+// old fruit code "<li><a href='fruits/" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n"
+
+// Fetch rows:
+while ($Row = mysql_fetch_assoc($result)) {
+ 
+    $itemName = $Row['itemName'] . "\n";
+	$howToPreserve = $Row['howToPreserve'];
+	$howToSave = $Row['howToSave'];
+	$goingBad = $Row['howToTellIfGoingBad'];
+	$recipes = $Row['recipes'];
+ 
+}
+$htmlfruitlist = html_entity_decode($fruitList);
+// store these variables in a session 
+?>
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Preserve.it</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/style.css" rel="stylesheet">
-        <script src="../js/jquery-3.2.1.min.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>
       <div id="background">
         <div id="mySidenav" class="sidenav visible-lg visible-md">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="../index.html">Home</a>
+          <a href="index.html">Home</a>
           <a href="#" id="fruit">Fruit</a>
           <div id="items1" class="items">
             <ul>
-              <li><a href="fruits/apple.html">Apple</a></li>
-              <li><a href="fruits/banana.html">Banana</a></li>
-              <li><a href="fruits/melon.html">Melon</a></li>
-              <li><a href="fruits/peach.html">Peach</a></li>
-              <li><a href="fruits/strawberry.html">Strawberry</a></li>
-              <li><a href="fruits/raspberry.html">Raspberry</a></li>
-              <li><a href="fruits/blueberry.html">Blueberry</a></li>
-              <li><a href="fruits/plum.html">Plum</a></li>
-              <li><a href="fruits/pineapple.html">Pineapple</a></li>
-              <li><a href="fruits/tomato.html">Tomato</a></li>
+              <?php $htmlfruitList ?>
             </ul>
           </div>
           <a href="#" id="meat">Meat</a>
@@ -70,16 +120,14 @@
               <button type="button" class="navbar-toggle topnavButton" data-toggle="collapse" data-target="#myNavbar">
                   &#9776;                 
               </button>
-              <a class="navbar-brand" href="#">PreservIt</a>
+              <a class="navbar-brand" href="index.html">PreservIt</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="index.html">Home</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Fruits <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="fruits/apple.html">Apple</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                    <?php $htmlfruitList ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vegetables <span class="caret"></span></a>
@@ -114,6 +162,10 @@
             </div>
           </div>
         </nav>
+
+        <div id="title" class="row">
+          <h1 class="">PreservIt</h1>
+        </div>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
               <div id="imaginary_container">
@@ -121,7 +173,7 @@
                       <input type="text" class="form-control"  placeholder="Search" >
                       <span class="input-group-addon">
                           <button type="submit">
-                              <image src="../image/search2.png" width="15" height="15" alt="submit">
+                              <image src="image/search2.png" width="15" height="15" alt="submit">
                           </button>
                       </span>
                   </div>
@@ -130,6 +182,10 @@
       	</div>
 
         <script>
+          $('.nav li a').click(function() {
+            $('.nav li a').css("background-color", "transparent");
+          });
+
           $('#fruit').click(function() {
             if ($('#items1').is(":visible") == false) {
               $('#items2').hide("slow");
@@ -205,42 +261,9 @@
             document.getElementById("mySidenav").style.width = "0";
           }
         </script>
-        <div class="info">
-          <div id="apple">
-            <h1>Apple</h1>
-            <div class="row">
-              <h3>How to preserve:</h3>
-            </div>
-            <div class="paragraph">
-              <p>
-                Slice apples into 1/2 inch thick rings. To prevent browning, drop apple rings
-                into a bowl of cold water (about 2 quarts) containing 1/2 teaspoon ascorbic acid
-                powder (1500 mg), or use equivalent in finely crushed vitamin C tablets or 1/2
-                cup lemon juice. Keep apples covered with ascorbic acid water until ready to use.
-              </p>
-            </div>
-            <div class="row">
-              <h3>How to tell if an apple has gone bad:</h3>
-            </div>
-            <div class="paragraph">
-              <p>
-                If an apple is too soft inside or if the skin of the apple is wrinkled and loose,
-                throw it out. Check the apple for discolored spots. Some spots can be due to bruising,
-                in which case the apple is still OK to eat. When you find a discolored spot, slice off
-                the skin in that spot.
-              </p>
-            </div>
-            <div class="row">
-              <h3>How to save it:</h3>
-            </div>
-            <div class="paragraph">
-              <p>
-                If the apple is bruised, the apple is still okay. An apple that has started going bad can
-                unfortunately not be saved.
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </body>
+<?php
+	mysql_close($con);
+?>
 </html>

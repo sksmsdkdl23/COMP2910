@@ -3,15 +3,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Preserve.it</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/style.css" rel="stylesheet">
-        <script src="../js/jquery-3.2.1.min.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>
       <div id="background">
         <div id="mySidenav" class="sidenav visible-lg visible-md">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="../index.html">Home</a>
+          <a href="index.html">Home</a>
           <a href="#" id="fruit">Fruit</a>
           <div id="items1" class="items">
             <ul>
@@ -70,7 +71,7 @@
               <button type="button" class="navbar-toggle topnavButton" data-toggle="collapse" data-target="#myNavbar">
                   &#9776;                 
               </button>
-              <a class="navbar-brand" href="#">PreservIt</a>
+              <a class="navbar-brand" href="index.html">PreservIt</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
@@ -114,6 +115,10 @@
             </div>
           </div>
         </nav>
+
+        <div id="title" class="row">
+          <h1 class="">PreservIt</h1>
+        </div>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
               <div id="imaginary_container">
@@ -121,7 +126,7 @@
                       <input type="text" class="form-control"  placeholder="Search" >
                       <span class="input-group-addon">
                           <button type="submit">
-                              <image src="../image/search2.png" width="15" height="15" alt="submit">
+                              <image src="image/search2.png" width="15" height="15" alt="submit">
                           </button>
                       </span>
                   </div>
@@ -130,6 +135,10 @@
       	</div>
 
         <script>
+          $('.nav li a').click(function() {
+            $('.nav li a').css("background-color", "transparent");
+          });
+
           $('#fruit').click(function() {
             if ($('#items1').is(":visible") == false) {
               $('#items2').hide("slow");
@@ -205,42 +214,6 @@
             document.getElementById("mySidenav").style.width = "0";
           }
         </script>
-        <div class="info">
-          <div id="apple">
-            <h1>Apple</h1>
-            <div class="row">
-              <h3>How to preserve:</h3>
-            </div>
-            <div class="paragraph">
-              <p>
-                Slice apples into 1/2 inch thick rings. To prevent browning, drop apple rings
-                into a bowl of cold water (about 2 quarts) containing 1/2 teaspoon ascorbic acid
-                powder (1500 mg), or use equivalent in finely crushed vitamin C tablets or 1/2
-                cup lemon juice. Keep apples covered with ascorbic acid water until ready to use.
-              </p>
-            </div>
-            <div class="row">
-              <h3>How to tell if an apple has gone bad:</h3>
-            </div>
-            <div class="paragraph">
-              <p>
-                If an apple is too soft inside or if the skin of the apple is wrinkled and loose,
-                throw it out. Check the apple for discolored spots. Some spots can be due to bruising,
-                in which case the apple is still OK to eat. When you find a discolored spot, slice off
-                the skin in that spot.
-              </p>
-            </div>
-            <div class="row">
-              <h3>How to save it:</h3>
-            </div>
-            <div class="paragraph">
-              <p>
-                If the apple is bruised, the apple is still okay. An apple that has started going bad can
-                unfortunately not be saved.
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </body>
 </html>
