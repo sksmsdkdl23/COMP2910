@@ -1,90 +1,81 @@
 <?php 
-		
-		/* passes session from home page
-		session_start();
-		
-		$itemName = $_SESSION['itemName']; 
-		*/
-		// passing data by requerying server with get request
-		$squery = htmlspecialchars($_GET['squery']);
 
-		$con = mysql_connect('localhost:3306','sadapaac_student','fireflies131') 
-			or die('Could not connect to the server!');
+/*
+** Connect to database:
+*/
 
-		// Select a database:
-		mysql_select_db('sadapaac_preservit') 
-			or die('Could not select a database.');
-		 
-		// Example query: (TOP 10 equal LIMIT 0,10 in MySQL)
-		// Query we need: (SELECT * FROM foodItem WHERE itemName LIKE ('%$userinput%');
-		$SQL = "SELECT * FROM foodItem WHERE itemName LIKE ('$squery%')";
-		$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruit'";
-		 
-		// Execute query:
-		$result = mysql_query($SQL) 
-			or die('A error occured: ' . mysql_error());
+// Connect to the database (host, username, password)
+if ($_GET == null)
+	$squery = "apple";
+	
+$squery = htmlspecialchars($_GET['squery']);
 
-		$resultFruit = mysql_query($SQLFruit)
-			or die ('A error occured: ' . mysql_error());
-			
-		$fruitList;
-		 
+$con = mysql_connect('localhost:3306','sadapaac_student','fireflies131') 
+    or die('Could not connect to the server!');
 
-		 
-		// Generate category items Fruit
-		while ($Fruits = mysql_fetch_assoc($resultFruit)){
-			$fruitList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n");
-		}
-		// example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
-		// example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>
-		// donn't make it refer to html pages, gonna try to make it refer to an item.php page that generates the page 
-		// old fruit code "<li><a href='fruits/" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n"
+// Select a database:
+mysql_select_db('sadapaac_preservit') 
+    or die('Could not select a database.');
+ 
+// Example query: (TOP 10 equal LIMIT 0,10 in MySQL)
+// Query we need: (SELECT * FROM foodItem WHERE itemName LIKE ('%$userinput%');
+$SQL = "SELECT * FROM foodItem WHERE itemName LIKE ('$squery%')";
+$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruit'";
+ 
+// Execute query:
+$result = mysql_query($SQL) 
+    or die('A error occured: ' . mysql_error());
 
-		// Fetch rows:
-		while ($Row = mysql_fetch_assoc($result)) {
-		 
-			$itemName = $Row['itemName'];
-			$howToPreserve = $Row['howToPreserve'];
-			$howToSave = $Row['howToSave'];
-			$goingBad = $Row['howToTellIfGoingBad'];
-			$recipes = $Row['recipes'];
-		 
-		}
-		$htmlfruitlist = html_entity_decode($fruitList);
+$resultFruit = mysql_query($SQLFruit)
+	or die ('A error occured: ' . mysql_error());
+	
+$fruitList;
+ 
 
-		
-		
-		?>
+ 
+// Generate category items Fruit
+while ($Fruits = mysql_fetch_assoc($resultFruit)){
+	$fruitList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n");
+}
+// example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
+// example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>
+// donn't make it refer to html pages, gonna try to make it refer to an item.php page that generates the page 
+// old fruit code "<li><a href='fruits/" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n"
 
+// Fetch rows:
+while ($Row = mysql_fetch_assoc($result)) {
+ 
+    $itemName = $Row['itemName'] . "\n";
+	$howToPreserve = $Row['howToPreserve'];
+	$howToSave = $Row['howToSave'];
+	$goingBad = $Row['howToTellIfGoingBad'];
+	$recipes = $Row['recipes'];
+ 
+}
+$htmlfruitlist = html_entity_decode($fruitList);
+// store these variables in a session 
+?>
 
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Preserve.it</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/style.css" rel="stylesheet">
-        <script src="../js/jquery-3.2.1.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <style>
-              .carousel-inner > .item > img,
-              .carousel-inner > .item > a > img {
-              width: 40%;
-              margin: auto;
-          }
-        </style>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>
       <div id="background">
         <div id="mySidenav" class="sidenav visible-lg visible-md">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="../index.php">Home</a>
+          <a href="index.php">Home</a>
           <a href="#" id="fruit">Fruit</a>
           <div id="items1" class="items">
             <ul>
               <?php echo "$htmlfruitlist"; ?>
-			</ul>
+            </ul>
           </div>
           <a href="#" id="meat">Meat</a>
           <div id="items2" class="items">
@@ -121,6 +112,7 @@
             </ul>
           </div>
             <a href="affiliated/apps.php" id="affiliated">Affiliated Apps</a>
+          
         </div>
         <span id="open" onclick="openNav()" class="visible-lg visible-md">&#9776;</span>
         
@@ -130,7 +122,7 @@
               <button type="button" class="navbar-toggle topnavButton" data-toggle="collapse" data-target="#myNavbar">
                   &#9776;                 
               </button>
-              <a class="navbar-brand" href="#">PreservIt</a>
+              <a class="navbar-brand" href="index.php">PreservIt</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
@@ -168,23 +160,30 @@
                     <li><a href="#">Item</a></li>
                   </ul>
                 </li>
-                  <li class="">
+                <li class="">
                     <a href="affiliated/apps.php">Affiliated Apps</a>
                 </li>
+                  
               </ul>
             </div>
           </div>
         </nav>
+
+        <div id="title" class="row">
+          <h1 class="">
+            <img src="image/logo.png" alt="PreservIT Logo" style="width:90%;height:auto;max-width:705px;max-height:128px;">
+          </h1>
+        </div>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
               <div id="imaginary_container">
                   <div class="input-group stylish-input-group">
-					<form action="item.php" method = "GET">
+                      <form action="item.php" method = "GET">
 						<input type="text" class="form-control"  placeholder="Search" name="squery" >
-					</form>
+					  </form>
                       <span class="input-group-addon">
                           <button type="submit">
-                              <image src="../image/search2.png" width="15" height="15" alt="submit">
+                              <image src="image/search2.png" width="15" height="15" alt="submit">
                           </button>
                       </span>
                   </div>
@@ -193,6 +192,10 @@
       	</div>
 
         <script>
+          $('.nav li a').click(function() {
+            $('.nav li a').css("background-color", "transparent");
+          });
+
           $('#fruit').click(function() {
             if ($('#items1').is(":visible") == false) {
               $('#items2').hide("slow");
@@ -268,77 +271,9 @@
             document.getElementById("mySidenav").style.width = "0";
           }
         </script>
-        <h1><?php echo "$itemName"; ?></h1>
-        <div class="container">
-            <br>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-              <!-- Indicators -->
-              <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-              </ol>
-
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                  <img src="PHP VARIABLE HERE" alt="Item 1" width="345" height="258">
-                </div>
-
-                <div class="item">
-                  <img src="PHP VARIABLE HERE" alt="Item 2" width="345" height="258">
-                </div>
-              
-                <div class="item">
-                  <img src="PHP VARIABLE HERE" alt="Item 3" width="345" height="258">
-                </div>
-              </div>
-
-              <!-- Left and right controls -->
-              <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-menu-left" aria-hidden="true" style="top: 50%;"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-menu-right" aria-hidden="true" style="top: 50%;"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-        </div>
-        <div id="<?php echo "$itemName"; ?>">
-        <div class="info">
-          <div id="<?php echo "$itemName"; ?>">
-            <h1><?php echo "$itemName"; ?></h1>
-            <div class="row">
-              <h3>How to preserve:</h3>
-            </div>
-            <div class="paragraph">
-              <p>
-                <?php echo "$howToPreserve"; ?>
-              </p>
-            </div>
-            <div class="row">
-              <h3>How to tell if it's going bad</h3>
-            </div>
-            <div class="paragraph">
-              <p>
-                <?php echo "$goingBad"; ?>
-              </p>
-            </div>
-            <div class="row">
-              <h3>How to save it:</h3>
-            </div>
-            <div class="paragraph">
-              <p>
-                <?php echo "$howToSave"; ?>
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </body>
-	<?php 
+<?php
 	mysql_close($con);
-	?>
-	
+?>
 </html>

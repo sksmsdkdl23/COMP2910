@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
+body {
+  background-color: rgba(153, 255, 153, 0.6);
+}
+
 #background {
     text-align: center;
     font-family: 'Ubuntu', serif;
