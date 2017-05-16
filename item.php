@@ -1,8 +1,67 @@
+<?php 
+		
+		/* passes session from home page
+		session_start();
+		
+		$itemName = $_SESSION['itemName']; 
+		*/
+		// passing data by requerying server with get request
+		$squery = htmlspecialchars($_GET['squery']);
+
+		$con = mysql_connect('localhost:3306','sadapaac_student','fireflies131') 
+			or die('Could not connect to the server!');
+
+		// Select a database:
+		mysql_select_db('sadapaac_preservit') 
+			or die('Could not select a database.');
+		 
+		// Example query: (TOP 10 equal LIMIT 0,10 in MySQL)
+		// Query we need: (SELECT * FROM foodItem WHERE itemName LIKE ('%$userinput%');
+		$SQL = "SELECT * FROM foodItem WHERE itemName LIKE ('$squery%')";
+		$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruit'";
+		 
+		// Execute query:
+		$result = mysql_query($SQL) 
+			or die('A error occured: ' . mysql_error());
+
+		$resultFruit = mysql_query($SQLFruit)
+			or die ('A error occured: ' . mysql_error());
+			
+		$fruitList;
+		 
+
+		 
+		// Generate category items Fruit
+		while ($Fruits = mysql_fetch_assoc($resultFruit)){
+			$fruitList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n");
+		}
+		// example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
+		// example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>
+		// donn't make it refer to html pages, gonna try to make it refer to an item.php page that generates the page 
+		// old fruit code "<li><a href='fruits/" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n"
+
+		// Fetch rows:
+		while ($Row = mysql_fetch_assoc($result)) {
+		 
+			$itemName = $Row['itemName'];
+			$howToPreserve = $Row['howToPreserve'];
+			$howToSave = $Row['howToSave'];
+			$goingBad = $Row['howToTellIfGoingBad'];
+			$recipes = $Row['recipes'];
+		 
+		}
+		$htmlfruitlist = html_entity_decode($fruitList);
+
+		
+		
+		?>
+
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Preserve.It</title>
+        <title>Preserve.it</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
@@ -20,21 +79,12 @@
       <div id="background">
         <div id="mySidenav" class="sidenav visible-lg visible-md">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="../index.html">Home</a>
+          <a href="../index.php">Home</a>
           <a href="#" id="fruit">Fruit</a>
           <div id="items1" class="items">
             <ul>
-              <li><a href="fruits/apple.html">Apple</a></li>
-              <li><a href="fruits/banana.html">Banana</a></li>
-              <li><a href="fruits/melon.html">Melon</a></li>
-              <li><a href="fruits/peach.html">Peach</a></li>
-              <li><a href="fruits/strawberry.html">Strawberry</a></li>
-              <li><a href="fruits/raspberry.html">Raspberry</a></li>
-              <li><a href="fruits/blueberry.html">Blueberry</a></li>
-              <li><a href="fruits/plum.html">Plum</a></li>
-              <li><a href="fruits/pineapple.html">Pineapple</a></li>
-              <li><a href="fruits/tomato.html">Tomato</a></li>
-            </ul>
+              <?php echo "$htmlfruitlist"; ?>
+			</ul>
           </div>
           <a href="#" id="meat">Meat</a>
           <div id="items2" class="items">
@@ -70,6 +120,7 @@
               <li><a href="#">Item</a></li>
             </ul>
           </div>
+            <a href="affiliated/apps.php" id="affiliated">Affiliated Apps</a>
         </div>
         <span id="open" onclick="openNav()" class="visible-lg visible-md">&#9776;</span>
         
@@ -83,12 +134,10 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">Home</a></li>
+                <li class="active"><a href="index.php">Home</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Fruits <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="fruits/apple.html">Apple</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                    <?php echo "$htmlfruitlist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vegetables <span class="caret"></span></a>
@@ -119,6 +168,9 @@
                     <li><a href="#">Item</a></li>
                   </ul>
                 </li>
+                  <li class="">
+                    <a href="affiliated/apps.php">Affiliated Apps</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -127,7 +179,9 @@
           <div class="col-sm-6 col-sm-offset-3">
               <div id="imaginary_container">
                   <div class="input-group stylish-input-group">
-                      <input type="text" class="form-control"  placeholder="Search" >
+					<form action="item.php" method = "GET">
+						<input type="text" class="form-control"  placeholder="Search" name="squery" >
+					</form>
                       <span class="input-group-addon">
                           <button type="submit">
                               <image src="../image/search2.png" width="15" height="15" alt="submit">
@@ -214,7 +268,7 @@
             document.getElementById("mySidenav").style.width = "0";
           }
         </script>
-        <h1>Apple</h1>
+        <h1><?php echo "$itemName"; ?></h1>
         <div class="container">
             <br>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -228,15 +282,15 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                  <img src="../image/fruits/Apple1.jpg" alt="Item 1" width="345" height="258">
+                  <img src="PHP VARIABLE HERE" alt="Item 1" width="345" height="258">
                 </div>
 
                 <div class="item">
-                  <img src="../image/fruits/Apple2.png" alt="Item 2" width="345" height="258">
+                  <img src="PHP VARIABLE HERE" alt="Item 2" width="345" height="258">
                 </div>
               
                 <div class="item">
-                  <img src="../image/fruits/Apple3.jpg" alt="Item 3" width="345" height="258">
+                  <img src="PHP VARIABLE HERE" alt="Item 3" width="345" height="258">
                 </div>
               </div>
 
@@ -251,29 +305,22 @@
               </a>
             </div>
         </div>
-
+        <div id="<?php echo "$itemName"; ?>">
         <div class="info">
-          <div id="apple">
             <div class="row">
               <h3>How to preserve:</h3>
             </div>
             <div class="paragraph">
               <p>
-                Slice apples into 1/2 inch thick rings. To prevent browning, drop apple rings
-                into a bowl of cold water (about 2 quarts) containing 1/2 teaspoon ascorbic acid
-                powder (1500 mg), or use equivalent in finely crushed vitamin C tablets or 1/2
-                cup lemon juice. Keep apples covered with ascorbic acid water until ready to use.
+                <?php echo "$howToPreserve"; ?>
               </p>
             </div>
             <div class="row">
-              <h3>How to tell if an apple has gone bad:</h3>
+              <h3>How to tell if it's going bad</h3>
             </div>
             <div class="paragraph">
               <p>
-                If an apple is too soft inside or if the skin of the apple is wrinkled and loose,
-                throw it out. Check the apple for discolored spots. Some spots can be due to bruising,
-                in which case the apple is still OK to eat. When you find a discolored spot, slice off
-                the skin in that spot.
+                <?php echo "$goingBad"; ?>
               </p>
             </div>
             <div class="row">
@@ -281,12 +328,15 @@
             </div>
             <div class="paragraph">
               <p>
-                If the apple is bruised, the apple is still okay. An apple that has started going bad can
-                unfortunately not be saved.
+                <?php echo "$howToSave"; ?>
               </p>
             </div>
           </div>
         </div>
       </div>
     </body>
+	<?php 
+	mysql_close($con);
+	?>
+	
 </html>
