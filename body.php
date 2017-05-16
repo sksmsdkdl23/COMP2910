@@ -4,7 +4,7 @@
           <a href='#' id='fruit'>Fruit</a>
           <div class='items1'>
             <ul>
-            <?php $htmlfruitList ?>
+            <?php echo "$htmlfruitList"; ?> 
             </ul>
           </div>
           <a href='#'>Services</a>

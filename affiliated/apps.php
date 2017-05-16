@@ -18,7 +18,7 @@
 		// Example query: (TOP 10 equal LIMIT 0,10 in MySQL)
 		// Query we need: (SELECT * FROM foodItem WHERE itemName LIKE ('%$userinput%');
 		$SQL = "SELECT * FROM foodItem WHERE itemName LIKE ('$squery%')";
-		$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruits'";
+		$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruit'";
 		 
 		// Execute query:
 		$result = mysql_query($SQL) 
@@ -33,7 +33,7 @@
 		 
 		// Generate category items Fruit
 		while ($Fruits = mysql_fetch_assoc($resultFruit)){
-			$fruitList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n");
+			$fruitList .= htmlentities("<li><a href='../item.php?squery=" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n");
 		}
 		// example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
 		// example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>
@@ -48,10 +48,6 @@
 			$howToSave = $Row['howToSave'];
 			$goingBad = $Row['howToTellIfGoingBad'];
 			$recipes = $Row['recipes'];
-			$image1 = $Row['image1'];
-			$image2 = $Row['image2'];
-			$image3 = $Row['image3'];
-			$category = $Row['category'];
 		 
 		}
 		$htmlfruitlist = html_entity_decode($fruitList);
@@ -66,18 +62,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Preserve.it</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
         <script src="../js/jquery-3.2.1.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <style>
-              .carousel-inner > .item > img,
-              .carousel-inner > .item > a > img {
-              width: 40%;
-              margin: auto;
-          }
-        </style>
     </head>
     <body>
       <div id="background">
@@ -124,7 +111,7 @@
               <li><a href="#">Item</a></li>
             </ul>
           </div>
-            <a href="affiliated/apps.php" id="affiliated">Affiliated Apps</a>
+            <a href="../affiliated/apps.php" id="affiliated">Affiliated Apps</a>
         </div>
         <span id="open" onclick="openNav()" class="visible-lg visible-md">&#9776;</span>
         
@@ -138,7 +125,7 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php">Home</a></li>
+                <li class="active"><a href="../index.php">Home</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Fruits <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <?php echo "$htmlfruitlist"; ?>
@@ -172,8 +159,8 @@
                     <li><a href="#">Item</a></li>
                   </ul>
                 </li>
-                  <li class="">
-                    <a href="affiliated/apps.php">Affiliated Apps</a>
+                <li class="">
+                    <a href="../affiliated/apps.php">Affiliated Apps</a>
                 </li>
               </ul>
             </div>
@@ -272,67 +259,44 @@
             document.getElementById("mySidenav").style.width = "0";
           }
         </script>
-        <h1><?php echo "$itemName"; ?></h1>
-        <div class="container">
-            <br>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-              <!-- Indicators -->
-              <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-              </ol>
-
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                  <img src="image/<?php echo "$category"; ?>/<?php echo "$image1"; ?>.jpg" alt="good <?php echo "$itemName"; ?>" width="345" height="258">
-                </div>
-
-                <div class="item">
-                  <img src="image/<?php echo "$category"; ?>/<?php echo "$image2"; ?>.jpg" alt="aging <?php echo "$itemName"; ?>" width="345" height="258">
-                </div>
-              
-                <div class="item">
-                  <img src="image/<?php echo "$category"; ?>/<?php echo "$image3"; ?>.jpg" alt="bad <?php echo "$itemName"; ?>" width="345" height="258">
-                </div>
-              </div>
-
-              <!-- Left and right controls -->
-              <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-menu-left" aria-hidden="true" style="top: 50%;"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-menu-right" aria-hidden="true" style="top: 50%;"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-        </div>
-        <div id="<?php echo "$itemName"; ?>">
         <div class="info">
+          <div id="affiliated">
+            <h2 class="">
+                <img src="../image/affiliated_logo.png" alt="PreservIT Logo" style="width:90%;height:auto;max-width:705px;max-height:128px;">
+            </h2>
             <div class="row">
-              <h3>How to preserve:</h3>
+              <h3>
+                  <img src="food_notes.png" alt="Food Notes" style="width:90%;height:auto;max-width:304px;max-height:57px;">
+              </h3>
             </div>
             <div class="paragraph">
               <p>
-                <?php echo "$howToPreserve"; ?>
+                <b>Food Notes: </b>A web application that will allow users to keep track of their food waste in terms of money<br>
+                <a href="affiliated1.html">Link to Website</a>
               </p>
             </div>
             <div class="row">
-              <h3>How to tell if it's going bad</h3>
+              <br><br><br>
+              <h3>
+                <img src="wastebook.png" alt="WasteFood" style="width:90%;height:auto;max-width:100px">
+              </h3>
             </div>
             <div class="paragraph">
               <p>
-                <?php echo "$goingBad"; ?>
+                <b>WasteFood: </b>A webapp that records the food you waste and provides statistics about it.<br>
+                <a href="https://wastebook-2e70b.firebaseapp.com/">Link to Website</a>
               </p>
             </div>
             <div class="row">
-              <h3>How to save it:</h3>
+              <br><br><br>
+              <h3>
+                <img src="myfridge.png" alt="My Fridge" style="width:90%;height:auto;max-width:304px;max-height:57px;">  
+              </h3>
             </div>
             <div class="paragraph">
               <p>
-                <?php echo "$howToSave"; ?>
+                <b>MyFridge: </b>Keeps track of the food in your fridge, with email notifications for expiry dates.<br>
+                <a href="affiliated3.html">Link to Website</a>
               </p>
             </div>
           </div>

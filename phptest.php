@@ -31,16 +31,16 @@ $resultFruit = mysql_query($SQLFruit)
 	
 $fruitList;
  
-// Get result count:
-$Count = mysql_num_rows($result);
-print "Showing $count rows:<hr/>\n\n";
+
  
 // Generate category items Fruit
 while ($Fruits = mysql_fetch_assoc($resultFruit)){
-	$fruitList .= htmlentities("<li><a href='fruits/" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</li>\n");
+	$fruitList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n");
 }
 // example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
 // example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>
+// donn't make it refer to html pages, gonna try to make it refer to an item.php page that generates the page 
+// old fruit code "<li><a href='fruits/" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n"
 
 // Fetch rows:
 while ($Row = mysql_fetch_assoc($result)) {
@@ -52,16 +52,24 @@ while ($Row = mysql_fetch_assoc($result)) {
 	$recipes = $Row['recipes'];
  
 }
-$htmlfruitList = html_entity_decode($fruitList);
+$htmlfruitlist = html_entity_decode($fruitList);
+// store these variables in a session 
 
-include 'header.html';
-include 'searchform.html';
-include 'body.html';
+session_start();
+$_SESSION ['itemName'] = $itemName;
+$_SESSION ['howToPreserve'] = $howToPreserve;
+$_SESSION ['howToSave'] = $howToSave;
+$_SESSION ['goingBad'] = $goingBad;
+$_SESSION ['recipes'] = $recipes;
+
+include 'index2.php';
+/* debug
 echo 
 "<ul>
-<li>$itemName -- $howToPreserve -- $howToSave -- $goingBad --  $recipes -- $fruitList -- $resultFruit</li>
+<li>$itemName -- $howToPreserve -- $howToSave -- $goingBad --  $recipes -- $fruitList -- $resultFruit --$htmlfruitList</li>
 </ul>"
 ;
+*/
 
 mysql_close($con);
 include 'footer.html';

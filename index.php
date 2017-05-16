@@ -20,7 +20,11 @@ mysql_select_db('sadapaac_preservit')
 // Example query: (TOP 10 equal LIMIT 0,10 in MySQL)
 // Query we need: (SELECT * FROM foodItem WHERE itemName LIKE ('%$userinput%');
 $SQL = "SELECT * FROM foodItem WHERE itemName LIKE ('$squery%')";
-$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruit'";
+$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruits'";
+$SQLDairy = "SELECT * FROM foodItem WHERE category = 'dairy'";
+$SQLGrains = "SELECT * FROM foodItem WHERE category = 'grains'";
+$SQLVegetables = "SELECT * FROM foodItem WHERE category = 'vegetables'";
+$SQLMeats = "SELECT * FROM foodItem WHERE category = 'meats'";
  
 // Execute query:
 $result = mysql_query($SQL) 
@@ -29,13 +33,45 @@ $result = mysql_query($SQL)
 $resultFruit = mysql_query($SQLFruit)
 	or die ('A error occured: ' . mysql_error());
 	
+$resultVegetables = mysql_query($SQLVegetables)
+	or die ('A error occured: ' . mysql_error());
+	
+$resultDairies = mysql_query($SQLDairy)
+	or die ('A error occured: ' . mysql_error());
+	
+$resultMeats = mysql_query($SQLMeats)
+	or die ('A error occured: ' . mysql_error());
+	
+$resultGrains = mysql_query($SQLGrains)
+	or die ('A error occured: ' . mysql_error());
+	
 $fruitList;
+$vegetableList;
+$dairyList;
+$meatList;
+$grainList;
  
 
  
 // Generate category items Fruit
 while ($Fruits = mysql_fetch_assoc($resultFruit)){
 	$fruitList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n");
+}
+
+while ($Vegetables = mysql_fetch_assoc($resultVegetables)){
+	$vegetableList .= htmlentities("<li><a href='item.php?squery=" . $Vegetables['itemName'] . "'>" . $Vegetables['itemName'] . "</a></li>\n");
+}
+
+while ($Dairy = mysql_fetch_assoc($resultDairies)){
+	$dairyList .= htmlentities("<li><a href='item.php?squery=" . $Dairy['itemName'] . "'>" . $Dairy['itemName'] . "</a></li>\n");
+}
+
+while ($Meats = mysql_fetch_assoc($resultMeats)){
+	$meatList .= htmlentities("<li><a href='item.php?squery=" . $Meats['itemName'] . "'>" . $Meats['itemName'] . "</a></li>\n");
+}
+
+while ($Grains = mysql_fetch_assoc($resultGrains)){
+	$grainList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Grains['itemName'] . "</a></li>\n");
 }
 // example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
 // example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>
@@ -70,11 +106,11 @@ $htmlfruitlist = html_entity_decode($fruitList);
       <div id="background">
         <div id="mySidenav" class="sidenav visible-lg visible-md">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="index.html">Home</a>
+          <a href="index.php">Home</a>
           <a href="#" id="fruit">Fruit</a>
           <div id="items1" class="items">
             <ul>
-              <?php $htmlfruitList ?>
+              <?php echo "$htmlfruitlist"; ?>
             </ul>
           </div>
           <a href="#" id="meat">Meat</a>
@@ -111,6 +147,8 @@ $htmlfruitlist = html_entity_decode($fruitList);
               <li><a href="#">Item</a></li>
             </ul>
           </div>
+            <a href="affiliated/apps.php" id="affiliated">Affiliated Apps</a>
+          
         </div>
         <span id="open" onclick="openNav()" class="visible-lg visible-md">&#9776;</span>
         
@@ -120,14 +158,14 @@ $htmlfruitlist = html_entity_decode($fruitList);
               <button type="button" class="navbar-toggle topnavButton" data-toggle="collapse" data-target="#myNavbar">
                   &#9776;                 
               </button>
-              <a class="navbar-brand" href="index.html">PreservIt</a>
+              <a class="navbar-brand" href="index.php">PreservIt</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">Home</a></li>
+                <li class="active"><a href="index.php">Home</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Fruits <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <?php $htmlfruitList ?>
+                    <?php echo "$htmlfruitlist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vegetables <span class="caret"></span></a>
@@ -158,19 +196,27 @@ $htmlfruitlist = html_entity_decode($fruitList);
                     <li><a href="#">Item</a></li>
                   </ul>
                 </li>
+                <li class="">
+                    <a href="affiliated/apps.php">Affiliated Apps</a>
+                </li>
+                  
               </ul>
             </div>
           </div>
         </nav>
 
         <div id="title" class="row">
-          <h1 class="">PreservIt</h1>
+          <h1 class="">
+            <img src="image/logo.png" alt="PreservIT Logo" style="width:90%;height:auto;max-width:705px;max-height:128px;">
+          </h1>
         </div>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
               <div id="imaginary_container">
                   <div class="input-group stylish-input-group">
-                      <input type="text" class="form-control"  placeholder="Search" >
+                      <form action="item.php" method = "GET">
+						<input type="text" class="form-control"  placeholder="Search" name="squery" >
+					  </form>
                       <span class="input-group-addon">
                           <button type="submit">
                               <image src="image/search2.png" width="15" height="15" alt="submit">
