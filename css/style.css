@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu');
-
 #background {
     text-align: center;
-    font-family: 'Ubuntu', serif;
+    font-family: "Times New Roman", Georgia, Serif;
     position: absolute;
     top: 0; right: 0; bottom: 0; left: 0;
     background-size: cover;
@@ -23,44 +21,12 @@
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 10px;
-    width: 20px;
+    padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 25px;
     color: #818181;
     display: block;
     transition: 0.3s;
-}
-
-.topnav {
-    background-color: lightgreen;
-
-}
-
-.topnavButton {
-  background-color: rgba(153, 255, 153, 0.6);
-}
-
-.sidenav div {
-  display: none;
-}
-
-/*.sidenav div ul {
-  padding: 3px 3px 3px 35px;
-  color: #818181;
-  text-decoration: none;
-  transition: 0.3s;
-}*/
-
-.sidenav div ul li a{
-  color: #818181;
-  text-decoration: none;
-  transition: 0.3s;
-  font-size: 15px;
-}
-
-li {
-  list-style-type: none;
 }
 
 .sidenav a:hover, .offcanvas a:focus{
@@ -123,22 +89,3 @@ li {
 p {
   font-size: 15px;
 }
-
-.paragraph {
-  padding-left: 15px;
-  width: 90%;
-  text-align: left;
-}
-
-a{
-  color: #818181;
-  transition: 0.3s;
-}
-
-a:hover, a:focus {
-  color: #f1f1f1;
-}
-
-.nav > li > a:hover, .nav > li > a:focus {
-  background-color: transparent;
-} 
