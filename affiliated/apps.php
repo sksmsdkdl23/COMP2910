@@ -18,7 +18,12 @@
 		// Example query: (TOP 10 equal LIMIT 0,10 in MySQL)
 		// Query we need: (SELECT * FROM foodItem WHERE itemName LIKE ('%$userinput%');
 		$SQL = "SELECT * FROM foodItem WHERE itemName LIKE ('$squery%')";
-		$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruit'";
+		$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruits'";
+		$SQLDairy = "SELECT * FROM foodItem WHERE category = 'dairy'";
+		$SQLGrains = "SELECT * FROM foodItem WHERE category = 'grains'";
+		$SQLVegetables = "SELECT * FROM foodItem WHERE category = 'vegetables'";
+		$SQLMeats = "SELECT * FROM foodItem WHERE category = 'meats'";
+
 		 
 		// Execute query:
 		$result = mysql_query($SQL) 
@@ -27,13 +32,48 @@
 		$resultFruit = mysql_query($SQLFruit)
 			or die ('A error occured: ' . mysql_error());
 			
+		$resultVegetables = mysql_query($SQLVegetables)
+			or die ('A error occured: ' . mysql_error());
+	
+		$resultDairies = mysql_query($SQLDairy)
+			or die ('A error occured: ' . mysql_error());
+	
+		$resultMeats = mysql_query($SQLMeats)
+			or die ('A error occured: ' . mysql_error());
+	
+		$resultGrains = mysql_query($SQLGrains)
+			or die ('A error occured: ' . mysql_error());
+
+		
+		
+			
 		$fruitList;
+		$vegetableList;
+		$dairyList;
+		$meatList;
+		$grainList;
+
 		 
 
 		 
 		// Generate category items Fruit
 		while ($Fruits = mysql_fetch_assoc($resultFruit)){
 			$fruitList .= htmlentities("<li><a href='../item.php?squery=" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n");
+		}
+		while ($Vegetables = mysql_fetch_assoc($resultVegetables)){
+			$vegetableList .= htmlentities("<li><a href='../item.php?squery=" . $Vegetables['itemName'] . "'>" . $Vegetables['itemName'] . "</a></li>\n");
+		}
+
+		while ($Dairy = mysql_fetch_assoc($resultDairies)){
+			$dairyList .= htmlentities("<li><a href='../item.php?squery=" . $Dairy['itemName'] . "'>" . $Dairy['itemName'] . "</a></li>\n");
+		}
+
+		while ($Meats = mysql_fetch_assoc($resultMeats)){
+			$meatList .= htmlentities("<li><a href='../item.php?squery=" . $Meats['itemName'] . "'>" . $Meats['itemName'] . "</a></li>\n");
+		}
+
+		while ($Grains = mysql_fetch_assoc($resultGrains)){
+			$grainList .= htmlentities("<li><a href='../item.php?squery=" . $Fruits['itemName'] . "'>" . $Grains['itemName'] . "</a></li>\n");
 		}
 		// example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
 		// example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>
@@ -48,9 +88,18 @@
 			$howToSave = $Row['howToSave'];
 			$goingBad = $Row['howToTellIfGoingBad'];
 			$recipes = $Row['recipes'];
+			$image1 = $Row['image1'];
+			$image2 = $Row['image2'];
+			$image3 = $Row['image3'];
+			$category = $Row['category'];
 		 
 		}
 		$htmlfruitlist = html_entity_decode($fruitList);
+		$htmlvegetablelist = html_entity_decode($vegetableList);
+		$htmlmeatlist = html_entity_decode($meatList);
+		$htmldairylist = html_entity_decode($dairyList);
+		$htmlgrainlist = html_entity_decode($grainList);
+
 
 		
 		
@@ -62,12 +111,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Preserve.it</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
         <script src="../js/jquery-3.2.1.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <style>
+          .carousel-inner > .item > img,
+          .carousel-inner > .item > a > img {
+            width: 40%;
+            margin: auto;
+          }
+          .myCarousel {
+            margin: 50px 0;
+          }
+        </style>
     </head>
     <body>
-      <div id="background">
+      <div class="background item">
         <div id="mySidenav" class="sidenav visible-lg visible-md">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <a href="../index.php">Home</a>
@@ -80,35 +141,25 @@
           <a href="#" id="meat">Meat</a>
           <div id="items2" class="items">
             <ul>
-              <li><a href="meats/beef.html">Beef: Steaks</a></li>
-              <li><a href="meats/blueberry.html">Beef: Ground</a></li>
-              <li><a href="meats/poultry.html">Poultry</a></li>
-              <li><a href="meats/fish.html">Fish</a></li>
-              <li><a href="meats/pork.html">Pork</a></li>
-              <li><a href="meats/egg.html">Egg</a></li>
-              <li><a href="meats/sausage.html">Sausage</a></li>
-              <li><a href="meats/hotdog.html">Hot Dogs</a></li>
-              <li><a href="meats/shrimp.html">Shrimp</a></li>
-              <li><a href="meats/bacon.html">Bacon</a></li>
-              <li><a href="meats/oyster.html">Oyster</a></li>
+              <?php echo "$htmlmeatlist"; ?>
             </ul>
           </div>
           <a href="#" id="vegetable">Vegetables</a>
           <div id="items3" class="items">
             <ul>
-              <li><a href="#">Item</a></li>
+              <?php echo "$htmlvegetablelist"; ?>
             </ul>
           </div>
           <a href="#" id="dairy">Dairy</a>
           <div id="items4" class="items">
             <ul>
-              <li><a href="#">Item</a></li>
+              <?php echo "$htmldairylist"; ?>
             </ul>
           </div>
           <a href="#" id="grain">Grains</a>
           <div id="items5" class="items">
             <ul>
-              <li><a href="#">Item</a></li>
+              <?php echo "$htmlgrainlist"; ?>
             </ul>
           </div>
             <a href="../affiliated/apps.php" id="affiliated">Affiliated Apps</a>
@@ -133,33 +184,25 @@
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vegetables <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                    <?php echo "$htmlvegetablelist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Dairy <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                    <?php echo "$htmldairylist"; ?> 
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Meats <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                    <?php echo "$htmlmeatlist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Grains <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                    <?php echo "$htmlgrainlist"; ?>
                   </ul>
                 </li>
-                <li class="">
+                  <li class="">
                     <a href="../affiliated/apps.php">Affiliated Apps</a>
                 </li>
               </ul>
@@ -170,7 +213,7 @@
           <div class="col-sm-6 col-sm-offset-3">
               <div id="imaginary_container">
                   <div class="input-group stylish-input-group">
-					<form action="item.php" method = "GET">
+					<form action="../item.php" method = "GET">
 						<input type="text" class="form-control"  placeholder="Search" name="squery" >
 					</form>
                       <span class="input-group-addon">
@@ -264,36 +307,36 @@
             <h2 class="">
                 <img src="../image/affiliated_logo.png" alt="PreservIT Logo" style="width:90%;height:auto;max-width:705px;max-height:128px;">
             </h2>
-            <div class="row">
+            <div class="row" style="width: 75%">
               <h3>
                   <img src="food_notes.png" alt="Food Notes" style="width:90%;height:auto;max-width:304px;max-height:57px;">
               </h3>
-            </div>
-            <div class="paragraph">
+            </div>   
+            <div class="paragraph" style="width: 75%">
               <p>
                 <b>Food Notes: </b>A web application that will allow users to keep track of their food waste in terms of money<br>
                 <a href="affiliated1.html">Link to Website</a>
               </p>
             </div>
-            <div class="row">
+            <div class="row" style="width: 75%">
               <br><br><br>
               <h3>
                 <img src="wastebook.png" alt="WasteFood" style="width:90%;height:auto;max-width:100px">
               </h3>
             </div>
-            <div class="paragraph">
+            <div class="paragraph" style="width: 75%">
               <p>
                 <b>WasteFood: </b>A webapp that records the food you waste and provides statistics about it.<br>
                 <a href="https://wastebook-2e70b.firebaseapp.com/">Link to Website</a>
               </p>
             </div>
-            <div class="row">
+            <div class="row" style="width: 75%">
               <br><br><br>
               <h3>
                 <img src="myfridge.png" alt="My Fridge" style="width:90%;height:auto;max-width:304px;max-height:57px;">  
               </h3>
             </div>
-            <div class="paragraph">
+            <div class="paragraph" style="width: 75%">
               <p>
                 <b>MyFridge: </b>Keeps track of the food in your fridge, with email notifications for expiry dates.<br>
                 <a href="affiliated3.html">Link to Website</a>

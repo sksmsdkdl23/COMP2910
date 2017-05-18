@@ -89,7 +89,11 @@ while ($Row = mysql_fetch_assoc($result)) {
  
 }
 $htmlfruitlist = html_entity_decode($fruitList);
-// store these variables in a session 
+$htmlvegetablelist = html_entity_decode($vegetableList);
+$htmlmeatlist = html_entity_decode($meatList);
+$htmldairylist = html_entity_decode($dairyList);
+$htmlgrainlist = html_entity_decode($grainList);
+
 ?>
 
 <html lang="en">
@@ -103,7 +107,7 @@ $htmlfruitlist = html_entity_decode($fruitList);
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>
-      <div id="background">
+      <div class="background" id="main">
         <div id="mySidenav" class="sidenav visible-lg visible-md">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <a href="index.php">Home</a>
@@ -116,35 +120,25 @@ $htmlfruitlist = html_entity_decode($fruitList);
           <a href="#" id="meat">Meat</a>
           <div id="items2" class="items">
             <ul>
-              <li><a href="meats/beef.html">Beef: Steaks</a></li>
-              <li><a href="meats/blueberry.html">Beef: Ground</a></li>
-              <li><a href="meats/poultry.html">Poultry</a></li>
-              <li><a href="meats/fish.html">Fish</a></li>
-              <li><a href="meats/pork.html">Pork</a></li>
-              <li><a href="meats/egg.html">Egg</a></li>
-              <li><a href="meats/sausage.html">Sausage</a></li>
-              <li><a href="meats/hotdog.html">Hot Dogs</a></li>
-              <li><a href="meats/shrimp.html">Shrimp</a></li>
-              <li><a href="meats/bacon.html">Bacon</a></li>
-              <li><a href="meats/oyster.html">Oyster</a></li>
+              <?php echo "$htmlmeatlist"; ?>
             </ul>
           </div>
           <a href="#" id="vegetable">Vegetables</a>
           <div id="items3" class="items">
             <ul>
-              <li><a href="#">Item</a></li>
+              <?php echo "$htmlvegetablelist"; ?>
             </ul>
           </div>
           <a href="#" id="dairy">Dairy</a>
           <div id="items4" class="items">
             <ul>
-              <li><a href="#">Item</a></li>
+              <?php echo "$htmldairylist"; ?>
             </ul>
           </div>
           <a href="#" id="grain">Grains</a>
           <div id="items5" class="items">
             <ul>
-              <li><a href="#">Item</a></li>
+              <?php echo "$htmlgrainlist"; ?>
             </ul>
           </div>
             <a href="affiliated/apps.php" id="affiliated">Affiliated Apps</a>
@@ -170,30 +164,22 @@ $htmlfruitlist = html_entity_decode($fruitList);
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vegetables <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                    <?php echo "$htmlvegetablelist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Dairy <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                    <?php echo "$htmldairylist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Meats <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                    <?php echo "$htmlmeatlist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Grains <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                    <?php echo "$htmlgrainlist"; ?>
                   </ul>
                 </li>
                 <li class="">

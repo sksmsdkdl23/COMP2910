@@ -19,6 +19,11 @@
 		// Query we need: (SELECT * FROM foodItem WHERE itemName LIKE ('%$userinput%');
 		$SQL = "SELECT * FROM foodItem WHERE itemName LIKE ('$squery%')";
 		$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruits'";
+		$SQLDairy = "SELECT * FROM foodItem WHERE category = 'dairy'";
+		$SQLGrains = "SELECT * FROM foodItem WHERE category = 'grains'";
+		$SQLVegetables = "SELECT * FROM foodItem WHERE category = 'vegetables'";
+		$SQLMeats = "SELECT * FROM foodItem WHERE category = 'meats'";
+
 		 
 		// Execute query:
 		$result = mysql_query($SQL) 
@@ -27,13 +32,48 @@
 		$resultFruit = mysql_query($SQLFruit)
 			or die ('A error occured: ' . mysql_error());
 			
+		$resultVegetables = mysql_query($SQLVegetables)
+			or die ('A error occured: ' . mysql_error());
+	
+		$resultDairies = mysql_query($SQLDairy)
+			or die ('A error occured: ' . mysql_error());
+	
+		$resultMeats = mysql_query($SQLMeats)
+			or die ('A error occured: ' . mysql_error());
+	
+		$resultGrains = mysql_query($SQLGrains)
+			or die ('A error occured: ' . mysql_error());
+
+		
+		
+			
 		$fruitList;
+		$vegetableList;
+		$dairyList;
+		$meatList;
+		$grainList;
+
 		 
 
 		 
 		// Generate category items Fruit
 		while ($Fruits = mysql_fetch_assoc($resultFruit)){
 			$fruitList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Fruits['itemName'] . "</a></li>\n");
+		}
+		while ($Vegetables = mysql_fetch_assoc($resultVegetables)){
+			$vegetableList .= htmlentities("<li><a href='item.php?squery=" . $Vegetables['itemName'] . "'>" . $Vegetables['itemName'] . "</a></li>\n");
+		}
+
+		while ($Dairy = mysql_fetch_assoc($resultDairies)){
+			$dairyList .= htmlentities("<li><a href='item.php?squery=" . $Dairy['itemName'] . "'>" . $Dairy['itemName'] . "</a></li>\n");
+		}
+
+		while ($Meats = mysql_fetch_assoc($resultMeats)){
+			$meatList .= htmlentities("<li><a href='item.php?squery=" . $Meats['itemName'] . "'>" . $Meats['itemName'] . "</a></li>\n");
+		}
+
+		while ($Grains = mysql_fetch_assoc($resultGrains)){
+			$grainList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Grains['itemName'] . "</a></li>\n");
 		}
 		// example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
 		// example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>
@@ -55,6 +95,11 @@
 		 
 		}
 		$htmlfruitlist = html_entity_decode($fruitList);
+		$htmlvegetablelist = html_entity_decode($vegetableList);
+		$htmlmeatlist = html_entity_decode($meatList);
+		$htmldairylist = html_entity_decode($dairyList);
+		$htmlgrainlist = html_entity_decode($grainList);
+
 
 		
 		
@@ -72,15 +117,18 @@
         <script src="../js/jquery-3.2.1.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <style>
-              .carousel-inner > .item > img,
-              .carousel-inner > .item > a > img {
-              width: 40%;
-              margin: auto;
+          .carousel-inner > .item > img,
+          .carousel-inner > .item > a > img {
+            width: 40%;
+            margin: auto;
+          }
+          .myCarousel {
+            margin: 50px 0;
           }
         </style>
     </head>
     <body>
-      <div id="background">
+      <div class="background item">
         <div id="mySidenav" class="sidenav visible-lg visible-md">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <a href="../index.php">Home</a>
@@ -93,35 +141,25 @@
           <a href="#" id="meat">Meat</a>
           <div id="items2" class="items">
             <ul>
-              <li><a href="meats/beef.html">Beef: Steaks</a></li>
-              <li><a href="meats/blueberry.html">Beef: Ground</a></li>
-              <li><a href="meats/poultry.html">Poultry</a></li>
-              <li><a href="meats/fish.html">Fish</a></li>
-              <li><a href="meats/pork.html">Pork</a></li>
-              <li><a href="meats/egg.html">Egg</a></li>
-              <li><a href="meats/sausage.html">Sausage</a></li>
-              <li><a href="meats/hotdog.html">Hot Dogs</a></li>
-              <li><a href="meats/shrimp.html">Shrimp</a></li>
-              <li><a href="meats/bacon.html">Bacon</a></li>
-              <li><a href="meats/oyster.html">Oyster</a></li>
+              <?php echo "$htmlmeatlist"; ?>
             </ul>
           </div>
           <a href="#" id="vegetable">Vegetables</a>
           <div id="items3" class="items">
             <ul>
-              <li><a href="#">Item</a></li>
+              <?php echo "$htmlvegetablelist"; ?>
             </ul>
           </div>
           <a href="#" id="dairy">Dairy</a>
           <div id="items4" class="items">
             <ul>
-              <li><a href="#">Item</a></li>
+              <?php echo "$htmldairylist"; ?>
             </ul>
           </div>
           <a href="#" id="grain">Grains</a>
           <div id="items5" class="items">
             <ul>
-              <li><a href="#">Item</a></li>
+              <?php echo "$htmlgrainlist"; ?>
             </ul>
           </div>
             <a href="affiliated/apps.php" id="affiliated">Affiliated Apps</a>
@@ -145,31 +183,23 @@
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vegetables <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                  <ul>
+                    <?php echo "$htmlvegetablelist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Dairy <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                  <ul>
+                    <?php echo "$htmldairylist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Meats <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                  <ul>
+                    <?php echo "$htmlmeatlist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Grains <span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
-                    <li><a href="#">Item</a></li>
+                  <ul>
+                    <?php echo "$htmlgrainlist"; ?>
                   </ul>
                 </li>
                   <li class="">
@@ -272,7 +302,7 @@
             document.getElementById("mySidenav").style.width = "0";
           }
         </script>
-        <h1><?php echo "$itemName"; ?></h1>
+        <h1 class="itemName"><?php echo "$itemName"; ?></h1>
         <div class="container">
             <br>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -286,15 +316,15 @@
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                  <img src="image/<?php echo "$category"; ?>/<?php echo "$image1"; ?>.jpg" alt="good <?php echo "$itemName"; ?>" width="345" height="258">
+                  <img src="image/<?php echo "$category"; ?>/<?php echo "$image1"; ?>.jpg" alt="good <?php echo "$itemName"; ?>" style="width:auto;height:100%;max-width:345;max-height:258;">
                 </div>
 
                 <div class="item">
-                  <img src="image/<?php echo "$category"; ?>/<?php echo "$image2"; ?>.jpg" alt="aging <?php echo "$itemName"; ?>" width="345" height="258">
+                  <img src="image/<?php echo "$category"; ?>/<?php echo "$image2"; ?>.jpg" alt="aging <?php echo "$itemName"; ?>" style="width:auto;height:100%;max-width:345;max-height:258;">
                 </div>
               
                 <div class="item">
-                  <img src="image/<?php echo "$category"; ?>/<?php echo "$image3"; ?>.jpg" alt="bad <?php echo "$itemName"; ?>" width="345" height="258">
+                  <img src="image/<?php echo "$category"; ?>/<?php echo "$image3"; ?>.jpg" alt="bad <?php echo "$itemName"; ?>" style="width:auto;height:100%;max-width:345;max-height:258;">
                 </div>
               </div>
 
@@ -309,7 +339,8 @@
               </a>
             </div>
         </div>
-        <div id="<?php echo "$itemName"; ?>">
+        <center>
+        <div id="<?php echo "$itemName"; ?>" style="width: 75%;">
         <div class="info">
             <div class="row">
               <h3>How to preserve:</h3>
@@ -337,6 +368,7 @@
             </div>
           </div>
         </div>
+        </center>
       </div>
     </body>
 	<?php 
