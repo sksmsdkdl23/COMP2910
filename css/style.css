@@ -100,6 +100,7 @@ li {
   cursor: pointer;
   margin-left: 30px;
   margin-top: 20px;
+  position: fixed;
 }
 
 #title h1{
@@ -164,4 +165,8 @@ a:hover, a:focus {
 .itemName {
   font-size: 50px;
   margin: 75px 0;
+}
+
+.row {
+  text-align: center;
 }

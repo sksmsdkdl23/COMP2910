@@ -71,7 +71,7 @@ while ($Meats = mysql_fetch_assoc($resultMeats)){
 }
 
 while ($Grains = mysql_fetch_assoc($resultGrains)){
-	$grainList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Grains['itemName'] . "</a></li>\n");
+	$grainList .= htmlentities("<li><a href='item.php?squery=" . $Grains['itemName'] . "'>" . $Grains['itemName'] . "</a></li>\n");
 }
 // example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
 // example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>

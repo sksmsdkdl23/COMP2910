@@ -73,7 +73,7 @@
 		}
 
 		while ($Grains = mysql_fetch_assoc($resultGrains)){
-			$grainList .= htmlentities("<li><a href='../item.php?squery=" . $Fruits['itemName'] . "'>" . $Grains['itemName'] . "</a></li>\n");
+			$grainList .= htmlentities("<li><a href='../item.php?squery=" . $Grains['itemName'] . "'>" . $Grains['itemName'] . "</a></li>\n");
 		}
 		// example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
 		// example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>
@@ -172,7 +172,7 @@
               <button type="button" class="navbar-toggle topnavButton" data-toggle="collapse" data-target="#myNavbar">
                   &#9776;                 
               </button>
-              <a class="navbar-brand" href="#">PreservIt</a>
+              <a class="navbar-brand" href="../index.php">PreservIt</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
@@ -302,47 +302,66 @@
             document.getElementById("mySidenav").style.width = "0";
           }
         </script>
+            
+        <h1>
+            <img src="../image/affiliated_logo.png" alt="Affiliated Logo" style="width:100%;height:auto;max-width:705px;max-height:128px;">
+        </h1>
+            
         <div class="info">
-          <div id="affiliated">
-            <h2 class="">
-                <img src="../image/affiliated_logo.png" alt="PreservIT Logo" style="width:90%;height:auto;max-width:705px;max-height:128px;">
-            </h2>
-            <div class="row" style="width: 75%">
-              <h3>
-                  <img src="food_notes.png" alt="Food Notes" style="width:90%;height:auto;max-width:304px;max-height:57px;">
-              </h3>
-            </div>   
-            <div class="paragraph" style="width: 75%">
-              <p>
-                <b>Food Notes: </b>A web application that will allow users to keep track of their food waste in terms of money<br>
-                <a href="affiliated1.html">Link to Website</a>
-              </p>
+            <div class="row">
+                <h3>
+                <img src="food_notes.png" alt="Food Notes" style="width:100%;height:auto;max-width:304px;max-height:57px;">  
+                </h3>
+            </div>  
+            <div class="row">
+                <h3>Food Notes</h3>
             </div>
-            <div class="row" style="width: 75%">
-              <br><br><br>
-              <h3>
-                <img src="wastebook.png" alt="WasteFood" style="width:90%;height:auto;max-width:100px">
-              </h3>
+            <div class="row">
+                <div class="paragraph">
+                    <p>
+                    A web application that allow you to keep track of your food waste in terms of money.<br>
+                    You can enter your food items and checkoff the used ones at the end of a cycle.<br><br>
+                    <a href="affiliated1.html">Link to Website</a>                
+                    </p>
+                </div>
             </div>
-            <div class="paragraph" style="width: 75%">
-              <p>
-                <b>WasteFood: </b>A webapp that records the food you waste and provides statistics about it.<br>
-                <a href="https://wastebook-2e70b.firebaseapp.com/">Link to Website</a>
-              </p>
+            
+            <div class="row">
+                <h3>
+                <img src="wastebook.png" alt="WasteFood" style="width:100%;height:auto;max-width:100px">
+                </h3>
             </div>
-            <div class="row" style="width: 75%">
-              <br><br><br>
-              <h3>
-                <img src="myfridge.png" alt="My Fridge" style="width:90%;height:auto;max-width:304px;max-height:57px;">  
-              </h3>
+            <div class="row">
+                <h3>Waste Book</h3>
             </div>
-            <div class="paragraph" style="width: 75%">
-              <p>
-                <b>MyFridge: </b>Keeps track of the food in your fridge, with email notifications for expiry dates.<br>
-                <a href="affiliated3.html">Link to Website</a>
-              </p>
+            <div class="row">
+                <div class="paragraph">
+                    <p>
+                    A webapp that records the food you waste and provides statistics about it.<br>
+                    You can input the food threw away, and the app gives useful rank/statistics about food waste.<br><br>
+                    <a href="https://wastebook-2e70b.firebaseapp.com/">Link to Website</a>
+                    </p>
+                </div>
             </div>
-          </div>
+                
+            <div class="row">
+                    <h3>
+                    <img src="myfridge.png" alt="My Fridge" style="width:100%;height:auto;max-width:304px;max-height:57px;">  
+                    </h3>
+            </div>
+            <div class="row">
+                <h3>MyFridge</h3>
+            </div>
+            <div class="row">
+                <div class="paragraph">
+                    <p>
+                    Keeps track of the food in your fridge, with email notifications for expiry dates.<br>
+                    You can create and account and enter the food in your fridge as well as the expiry date. Then, you will receive 
+                    a notification a couple days before your food is expired.<br><br>
+                    <a href="https://myfridge-ff976.firebaseapp.com/login.html">Link to Website</a>
+                    </p>
+                </div>
+            </div>
         </div>
       </div>
     </body>

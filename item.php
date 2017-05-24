@@ -73,7 +73,7 @@
 		}
 
 		while ($Grains = mysql_fetch_assoc($resultGrains)){
-			$grainList .= htmlentities("<li><a href='item.php?squery=" . $Fruits['itemName'] . "'>" . $Grains['itemName'] . "</a></li>\n");
+			$grainList .= htmlentities("<li><a href='item.php?squery=" . $Grains['itemName'] . "'>" . $Grains['itemName'] . "</a></li>\n");
 		}
 		// example code for fruitlist, not working yet $fruitList = "<li><a href='fruits/" . $Fruits['itemName'] . "'</li>";
 		// example html for fruit: <li><a href='fruits/apple.html'>Apple</a></li>
@@ -111,6 +111,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Preserve.it</title>
+        <meta property="og:url"           content="http://www.preservit.ca/item.php"/>
+        <meta property="og:type"          content="information website" />
+        <meta property="og:title"         content="PreservIT" />
+        <meta property="og:description"   content="Save your left over ingredients." />
+        <meta property="og:image"         content="../image/fruits/apple1.jpeg" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/style.css" rel="stylesheet">
@@ -128,6 +133,15 @@
         </style>
     </head>
     <body>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      </script>
       <div class="background item">
         <div id="mySidenav" class="sidenav visible-lg visible-md">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -172,7 +186,7 @@
               <button type="button" class="navbar-toggle topnavButton" data-toggle="collapse" data-target="#myNavbar">
                   &#9776;                 
               </button>
-              <a class="navbar-brand" href="#">PreservIt</a>
+              <a class="navbar-brand" href="index.php">PreservIt</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
@@ -183,44 +197,46 @@
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vegetables <span class="caret"></span></a>
-                  <ul>
+                  <ul class="dropdown-menu">
                     <?php echo "$htmlvegetablelist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Dairy <span class="caret"></span></a>
-                  <ul>
+                  <ul class="dropdown-menu">
                     <?php echo "$htmldairylist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Meats <span class="caret"></span></a>
-                  <ul>
+                  <ul class="dropdown-menu">
                     <?php echo "$htmlmeatlist"; ?>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Grains <span class="caret"></span></a>
-                  <ul>
+                  <ul class="dropdown-menu">
                     <?php echo "$htmlgrainlist"; ?>
                   </ul>
                 </li>
-                  <li class="">
+                <li class="">
                     <a href="affiliated/apps.php">Affiliated Apps</a>
                 </li>
+                  
               </ul>
             </div>
           </div>
         </nav>
+          
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
               <div id="imaginary_container">
                   <div class="input-group stylish-input-group">
-					<form action="item.php" method = "GET">
-						<input type="text" class="form-control"  placeholder="Search" name="squery" >
-					</form>
+                    <form action="item.php" method = "GET">
+                      <input type="text" class="form-control"  placeholder="Search" name="squery" />
                       <span class="input-group-addon">
-                          <button type="submit">
-                              <image src="../image/search2.png" width="15" height="15" alt="submit">
-                          </button>
+                        <button type="submit">
+                            <image src="../image/search2.png" width="15" height="15" alt="submit">
+                        </button>
                       </span>
+                    </form>
                   </div>
               </div>
           </div>
@@ -312,7 +328,6 @@
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
               </ol>
-
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
                 <div class="item active">
@@ -340,35 +355,48 @@
             </div>
         </div>
         <center>
-        <div id="<?php echo "$itemName"; ?>" style="width: 75%;">
-        <div class="info">
-            <div class="row">
-              <h3>How to preserve:</h3>
+            <div id="<?php echo "$itemName"; ?>" style="width: 100%;">
+                <div class="info">
+                    
+                    <div class="row">
+                        <h3>How to preserve:</h3>
+                    </div>
+                    <div class="row">
+                        <div class="paragraph">
+                            <p>
+                            <?php echo "$howToPreserve"; ?>
+                            </p>
+                        </div>               
+                    </div>
+
+                    <div class="row">
+                        <h3>How to tell if it's going bad</h3>
+                    </div>
+                    <div class="row">
+                        <div class="paragraph">
+                            <p>
+                            <?php echo "$goingBad"; ?>
+                            </p>
+                        </div>                    
+                    </div>
+
+                    <div class="row">
+                    <h3>How to save it:</h3>
+                    </div>
+                    <div class="row">
+                        <div class="paragraph">
+                            <p>
+                            <?php echo "$howToSave"; ?>
+                            </p>
+                        </div>                    
+                    </div>
+                </div>
             </div>
-            <div class="paragraph">
-              <p>
-                <?php echo "$howToPreserve"; ?>
-              </p>
-            </div>
-            <div class="row">
-              <h3>How to tell if it's going bad</h3>
-            </div>
-            <div class="paragraph">
-              <p>
-                <?php echo "$goingBad"; ?>
-              </p>
-            </div>
-            <div class="row">
-              <h3>How to save it:</h3>
-            </div>
-            <div class="paragraph">
-              <p>
-                <?php echo "$howToSave"; ?>
-              </p>
-            </div>
-          </div>
-        </div>
         </center>
+        <br/>
+        <div class="row">
+          <div class="fb-share-button" data-href="http://www.preservit.ca/item.php?squery=<?php echo "$itemName";?>" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
+        </div>
       </div>
     </body>
 	<?php 
