@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+body {
+  background-color: white;
+}
+
+#main {
+  background-image: url("../image/fruits/apple1.jpeg");
+}
+
+.item{
+  background-image: url("../image/fruits/apple2.jpeg");
+}
+.background {
+    text-align: center;
+    font-family: 'Ubuntu', serif;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    max-width: 100%;
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+    width:100%;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f6f6f6;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 10px;
+    width: 20px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+.topnav {
+    background-color: #f6f6f6;
+
+}
+
+.topnavButton {
+  background-color: #f6f6f6;
+}
+
+.sidenav div {
+  display: none;
+}
+
+/*.sidenav div ul {
+  padding: 3px 3px 3px 35px;
+  color: #818181;
+  text-decoration: none;
+  transition: 0.3s;
+}*/
+
+.sidenav div ul li a{
+  color: black;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+li {
+  list-style-type: none;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: grey;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+#open {
+  float: left;
+  font-size:30px;
+  cursor: pointer;
+  margin-left: 30px;
+  margin-top: 20px;
+  position: fixed;
+}
+
+#title h1{
+  font-size: 50px;
+  margin-top: 15%;
+}
+#imaginary_container{
+    margin-top:4%;
+}
+
+.stylish-input-group .input-group-addon{
+    background: white !important;
+}
+
+.stylish-input-group .form-control{
+	border-right:0;
+	box-shadow:0 0 0;
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+
+.info h3, p{
+  float: left;
+  margin-left: 10%;
+}
+
+.info {
+  margin-top: 25px;
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+p {
+  font-size: 15px;
+}
+
+.paragraph {
+  padding-left: 15px;
+  width: 90%;
+  text-align: left;
+}
+
+a{
+  color: black;
+  transition: 0.3s;
+}
+
+a:hover, a:focus {
+  color: grey;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: transparent;
+}
+
+.itemName {
+  font-size: 50px;
+  margin: 75px 0;
+}
+
+.row {
+  text-align: center;
+}
