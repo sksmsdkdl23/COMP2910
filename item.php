@@ -28,6 +28,17 @@
 		// Execute query:
 		$result = mysql_query($SQL) 
 			or die('A error occured: ' . mysql_error());
+		if (strlen($result) == 0){
+			$itemName = "Nothing here :c";
+			$category = "error";
+			$image1 = "Nothing1";
+			$image2 = "Nothing2";
+			$image3 = "Nothing3";
+			$howToPreserve = "You can preserve this by continuing to type values that we have no data for.";
+			$howToSave = "To save yourself from this error, type in a value that has data.";
+			$goingBad = "If this error starts displaying weird artifacts and trying to take over the webapp, then it has started going bad";
+		}
+
 
 		$resultFruit = mysql_query($SQLFruit)
 			or die ('A error occured: ' . mysql_error());
@@ -152,22 +163,22 @@
               <?php echo "$htmlfruitlist"; ?>
 			</ul>
           </div>
-          <a href="#" id="meat">Meat</a>
+          <a href="#" id="meat">Vegetables</a>
           <div id="items2" class="items">
-            <ul>
-              <?php echo "$htmlmeatlist"; ?>
-            </ul>
-          </div>
-          <a href="#" id="vegetable">Vegetables</a>
-          <div id="items3" class="items">
             <ul>
               <?php echo "$htmlvegetablelist"; ?>
             </ul>
           </div>
-          <a href="#" id="dairy">Dairy</a>
-          <div id="items4" class="items">
+          <a href="#" id="vegetable">Dairy</a>
+          <div id="items3" class="items">
             <ul>
               <?php echo "$htmldairylist"; ?>
+            </ul>
+          </div>
+          <a href="#" id="dairy">Meats</a>
+          <div id="items4" class="items">
+            <ul>
+              <?php echo "$htmlmeatlist"; ?>
             </ul>
           </div>
           <a href="#" id="grain">Grains</a>
