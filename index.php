@@ -19,12 +19,12 @@ mysql_select_db('sadapaac_preservit')
  
 // Example query: (TOP 10 equal LIMIT 0,10 in MySQL)
 // Query we need: (SELECT * FROM foodItem WHERE itemName LIKE ('%$userinput%');
-$SQL = "SELECT * FROM foodItem WHERE itemName LIKE ('$squery%')";
-$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruits'";
-$SQLDairy = "SELECT * FROM foodItem WHERE category = 'dairy'";
-$SQLGrains = "SELECT * FROM foodItem WHERE category = 'grains'";
-$SQLVegetables = "SELECT * FROM foodItem WHERE category = 'vegetables'";
-$SQLMeats = "SELECT * FROM foodItem WHERE category = 'meats'";
+$SQL = "SELECT * FROM foodItem WHERE itemName LIKE ('$squery%') ORDER BY itemName ASC LIMIT 1";
+$SQLFruit = "SELECT * FROM foodItem WHERE category = 'fruits' GROUP BY itemName ASC";
+$SQLDairy = "SELECT * FROM foodItem WHERE category = 'dairy' GROUP BY itemName ASC";
+$SQLGrains = "SELECT * FROM foodItem WHERE category = 'grains' GROUP BY itemName ASC";
+$SQLVegetables = "SELECT * FROM foodItem WHERE category = 'vegetables' GROUP BY itemName ASC";
+$SQLMeats = "SELECT * FROM foodItem WHERE category = 'meats' GROUP BY itemName ASC";
  
 // Execute query:
 $result = mysql_query($SQL) 
