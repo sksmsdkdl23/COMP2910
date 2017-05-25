@@ -121,7 +121,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Preserve.it</title>
+        <title>PreservIt</title>
         <meta property="og:url"           content="http://www.preservit.ca/item.php"/>
         <meta property="og:type"          content="information website" />
         <meta property="og:title"         content="PreservIT" />
@@ -240,14 +240,14 @@
           <div class="col-sm-6 col-sm-offset-3">
               <div id="imaginary_container">
                   <div class="input-group stylish-input-group">
-                    <form action="item.php" method = "GET">
+                    <form id="search" action="item.php" method = "GET">
                       <input type="text" class="form-control"  placeholder="Search" name="squery" />
-                      <span class="input-group-addon">
-                        <button type="submit">
+                    </form>
+                    <span class="input-group-addon">
+                        <button type="submit" form="search">
                             <image src="../image/search2.png" width="15" height="15" alt="submit">
                         </button>
-                      </span>
-                    </form>
+                    </span>
                   </div>
               </div>
           </div>
@@ -408,6 +408,8 @@
         <div class="row">
           <div class="fb-share-button" data-href="http://www.preservit.ca/item.php?squery=<?php echo "$itemName";?>" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>
         </div>
+
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Save%20your%20left%20over%20ingredients.">Tweet</a>
       </div>
     </body>
 	<?php 

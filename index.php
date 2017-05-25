@@ -100,7 +100,7 @@ $htmlgrainlist = html_entity_decode($grainList);
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Preserve.it</title>
+        <title>PreservIt</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <script src="js/jquery-3.2.1.min.js"></script>
@@ -117,22 +117,22 @@ $htmlgrainlist = html_entity_decode($grainList);
               <?php echo "$htmlfruitlist"; ?>
             </ul>
           </div>
-          <a href="#" id="meat">Meat</a>
+          <a href="#" id="meat">Vegetables</a>
           <div id="items2" class="items">
-            <ul>
-              <?php echo "$htmlmeatlist"; ?>
-            </ul>
-          </div>
-          <a href="#" id="vegetable">Vegetables</a>
-          <div id="items3" class="items">
             <ul>
               <?php echo "$htmlvegetablelist"; ?>
             </ul>
           </div>
-          <a href="#" id="dairy">Dairy</a>
-          <div id="items4" class="items">
+          <a href="#" id="vegetable">Dairy</a>
+          <div id="items3" class="items">
             <ul>
               <?php echo "$htmldairylist"; ?>
+            </ul>
+          </div>
+          <a href="#" id="dairy">Meats</a>
+          <div id="items4" class="items">
+            <ul>
+              <?php echo "$htmlmeatlist"; ?>
             </ul>
           </div>
           <a href="#" id="grain">Grains</a>
@@ -200,14 +200,14 @@ $htmlgrainlist = html_entity_decode($grainList);
           <div class="col-sm-6 col-sm-offset-3">
               <div id="imaginary_container">
                   <div class="input-group stylish-input-group">
-                      <form action="item.php" method = "GET">
-						<input type="text" class="form-control"  placeholder="Search" name="squery" >
-					  </form>
-                      <span class="input-group-addon">
-                          <button type="submit">
-                              <image src="image/search2.png" width="15" height="15" alt="submit">
-                          </button>
-                      </span>
+                    <form id="search" action="item.php" method = "GET">
+                      <input type="text" class="form-control"  placeholder="Search" name="squery" />
+                    </form>
+                    <span class="input-group-addon">
+                        <button type="submit" form="search">
+                            <image src="../image/search2.png" width="15" height="15" alt="submit">
+                        </button>
+                    </span>
                   </div>
               </div>
           </div>
